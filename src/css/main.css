@@ -67,6 +67,7 @@ code {
   color: #ffcb05;
   -webkit-text-stroke: 1px #1e1d7a;
   font-family: sans-serif;
+  margin-bottom: 1rem;
 }
 
 .card-list .card-list-container .card-content img {

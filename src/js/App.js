@@ -14,12 +14,19 @@ class App extends Component {
 
     this.state = {
       pics: [],
-      stats: []
+      stats: [],
+      title: "Dave's Pokedex"
     }
   }
 
   componentDidMount() {
     const addPokemon = ( async () => {
+      let titleEl = document.querySelector('.title')
+
+      if(this.state.pics.length < 151) {
+        titleEl.innerHTML = "LOADING";
+      }
+
       let pictures = []
       let data = []
       for(let i=1; i <= 151; i++) {
@@ -36,9 +43,12 @@ class App extends Component {
 
 
   render() {
+    const titleEl = document.querySelector('.title');
+    titleEl.innerHTML = this.state.title;
+
     return (
       <div className="App">
-          <h1>Dave's Pokedex</h1>
+          <h1 className="title">{this.state.title}</h1>
           <CardList pics={this.state.pics} stats={this.state.stats}></CardList>
       </div>
     );
