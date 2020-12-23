@@ -13,19 +13,24 @@ class App extends Component {
     super();
 
     this.state = {
-      pokemons: []
+      pics: [],
+      stats: []
     }
   }
 
   componentDidMount() {
     const addPokemon = ( async () => {
-      let result = []
-      for(let i=1; i <= 10; i++) {
-        let pokepic = await fetch(`https://pokeres.bastionbot.org/images/pokemon/${i}.png`)
-        result.push(pokepic.url)
+      let pictures = []
+      let data = []
+      for(let i=1; i <= 151; i++) {
+        let pokePic = await fetch(`https://pokeres.bastionbot.org/images/pokemon/${i}.png`)
+        let pokeResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+        let pokeData = await pokeResponse.json();
+        pictures.push(pokePic.url)
+        data.push(pokeData.name)
       }
 
-      this.setState( {pokemons: result})
+      this.setState( {pics: pictures, stats: data})
     })();
 }
 
@@ -33,8 +38,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <h1>Pokedex</h1>
-          <CardList pokemons={this.state.pokemons}></CardList>
+          <h1>Dave's Pokedex</h1>
+          <CardList pics={this.state.pics} stats={this.state.stats}></CardList>
       </div>
     );
   }

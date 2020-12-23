@@ -1,5 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
+}
+
+.App h1 {
+  color: #ffcb05;
+  -webkit-text-stroke: 1px #1d4d82;
 }
 
 .App-header {
@@ -27,17 +39,42 @@ code {
 }
 
 .card-list {
-  width: 100px;
-  height: 100px;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-img {
-  height: 100%;
-  width: 100%;
-  background: black;
+.card-list .card-list-container {
+  max-width: 1100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card-list .card-list-container .card-content {
+  cursor: pointer;
+  transition: .3s ease;
+  background: #0a247a;
+  border: 2px solid black;
   border-radius: 5px;
-  margin: 0 1rem;
+  margin: 1rem;
   padding: 1rem;
+}
+
+.card-list .card-list-container .card-content h2 {
+  text-transform: uppercase;
+  color: #ffcb05;
+  -webkit-text-stroke: 1px #1e1d7a;
+  font-family: sans-serif;
+}
+
+.card-list .card-list-container .card-content img {
+  width: 200px;
+  height: 250px;
+}
+
+.card-list .card-list-container .card-content:hover {
+  transform: scale(1.2);
 }
 /*# sourceMappingURL=main.css.map */
