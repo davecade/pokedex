@@ -5,8 +5,7 @@ import { CardList } from './components/card-list/card-list.component'
 import { SearchBar } from './components/search-bar/search-bar.component'
 
 
-// -- Pokemon Image API: https://pokeres.bastionbot.org/images/pokemon/1.png
-// -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
+
 
 class App extends Component {
 
@@ -18,11 +17,16 @@ class App extends Component {
         pics: [],
         stats: []
       },
-      title: "Dave's Pokedex"
+      title: "Dave's Pokedex",
+      searchField: ''
     }
   }
 
   componentDidMount() {
+
+    // -- Pokemon Image API: https://pokeres.bastionbot.org/images/pokemon/1.png
+    // -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
+
     const addPokemon = ( async () => {
       let pictures = []
       let data = []
@@ -38,11 +42,18 @@ class App extends Component {
 
   }
 
-  handleChange() {
-    console.log("changing")
+  handleChange = (e) => {
+    this.setState({searchField: e.target.value}, () => console.log(this.state.searchField))
   }
 
   render() {
+
+    const filteredPokemon = this.state.pokemon.stats.filter((stat, index) => {
+      return stat.toLowerCase().includes(this.state.searchField.toLowerCase())
+    })
+
+    console.log(filteredPokemon)
+
     return (
       <div className="App">
           <h1 className="title">{this.state.title}</h1>
