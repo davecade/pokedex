@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { Card } from '../card/card.component'
 
-export const CardList = props => {
-    const iterator = new Array(props.stats.length).fill(1)
+export const CardList = ({pokemon}) => {
+    const iterator = new Array(pokemon.stats.length).fill(1)
 
     return (
         <Fragment>
@@ -10,7 +10,7 @@ export const CardList = props => {
                 <div className="card-list-container">
                     {
                         iterator.map((item, index) => (
-                            <Card key={index} stat={props.stats[index]} pic={props.pics[index]}/>
+                            <Card key={index} pokemon={{pic: pokemon.pics[index], stat: pokemon.stats[index]}}/>
                         ))
                     }
                 </div>

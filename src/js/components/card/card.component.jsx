@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 
-export const Card = props => (
+export const Card = ({pokemon}) => (
     <div className="card-content">
-        <h2>{props.stat}</h2>
-        <img src={props.pic} alt=""/>
+        <h2>{pokemon.stat}</h2>
+        <img src={pokemon.pic} alt=""/>
     </div>
 )

@@ -14,8 +14,10 @@ class App extends Component {
     super();
 
     this.state = {
-      pics: [],
-      stats: [],
+      pokemon: {
+        pics: [],
+        stats: []
+      },
       title: "Dave's Pokedex"
     }
   }
@@ -30,18 +32,22 @@ class App extends Component {
         let pokeData = await pokeResponse.json();
         pictures.push(pokePic.url)
         data.push(pokeData.name)
-        this.setState( {pics: pictures, stats: data})
+        this.setState( {pokemon: {pics: pictures, stats: data}})
       }
     })();
 
+  }
+
+  handleChange() {
+    console.log("changing")
   }
 
   render() {
     return (
       <div className="App">
           <h1 className="title">{this.state.title}</h1>
-          <SearchBar />
-          <CardList pics={this.state.pics} stats={this.state.stats}></CardList>
+          <SearchBar handleChange={this.handleChange} />
+          <CardList pokemon={this.state.pokemon}></CardList>
       </div>
     );
   }

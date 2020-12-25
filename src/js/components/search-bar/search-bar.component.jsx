@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const SearchBar = () => {
+export const SearchBar = ({handleChange}) => {
 
     return (
-        <input className="searchbar" placeholder="Search Pokemon" />
+        <input className="searchbar" placeholder="Search Pokemon" onChange={handleChange} />
     )
 }
