@@ -2,6 +2,7 @@ import logo from '../logo.svg';
 import '../css/main.css';
 import { Component } from 'react';
 import { CardList } from './components/card-list/card-list.component'
+import { SearchBar } from './components/search-bar/search-bar.component'
 
 
 // -- Pokemon Image API: https://pokeres.bastionbot.org/images/pokemon/1.png
@@ -21,12 +22,6 @@ class App extends Component {
 
   componentDidMount() {
     const addPokemon = ( async () => {
-      let titleEl = document.querySelector('.title')
-
-      if(this.state.pics.length < 151) {
-        titleEl.innerHTML = "LOADING";
-      }
-
       let pictures = []
       let data = []
       for(let i=1; i <= 151; i++) {
@@ -35,20 +30,17 @@ class App extends Component {
         let pokeData = await pokeResponse.json();
         pictures.push(pokePic.url)
         data.push(pokeData.name)
+        this.setState( {pics: pictures, stats: data})
       }
-
-      this.setState( {pics: pictures, stats: data})
     })();
-}
 
+  }
 
   render() {
-    const titleEl = document.querySelector('.title');
-    titleEl.innerHTML = this.state.title;
-
     return (
       <div className="App">
           <h1 className="title">{this.state.title}</h1>
+          <SearchBar />
           <CardList pics={this.state.pics} stats={this.state.stats}></CardList>
       </div>
     );
