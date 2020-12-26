@@ -19,6 +19,7 @@ export const LoadingBar = ({length}) => {
     return (
         <Fragment>
             <h1>Loading Pokemon</h1>
+            <h1>{length}</h1>
             <div className="loading-container">
                 <div className="loading-bar"></div>
             </div>

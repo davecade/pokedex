@@ -3,9 +3,6 @@ import { Component, Fragment } from 'react';
 import { CardList } from './components/card-list/card-list.component';
 import { Display } from './components/display/display.component';
 
-
-
-
 class App extends Component {
 
   constructor() {
