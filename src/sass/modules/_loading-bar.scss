@@ -1,0 +1,12 @@
+.loading-container {
+    margin: 0 auto;
+    width: 50%;
+    background: black;
+
+    .loading-bar {
+        width: 0%;
+        height: 20px;
+        background: green;
+        margin-top: 1rem;
+    }
+}
