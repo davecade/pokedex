@@ -10,7 +10,7 @@ export const CardList = ({pokemon}) => {
                 <div className="card-list-container">
                     {
                         iterator.map((item, index) => (
-                            <Card key={index} pokemon={{pic: pokemon.pics[index], stat: pokemon.stats[index]}}/>
+                            <Card key={index} pokemon={{img: pokemon.images[index], stat: pokemon.stats[index]}}/>
                         ))
                     }
                 </div>

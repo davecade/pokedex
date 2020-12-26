@@ -10,7 +10,7 @@ class App extends Component {
 
     this.state = {
       pokemon: {
-        pics: [],
+        images: [],
         stats: []
       },
       title: "Dave's Pokedex",
@@ -24,15 +24,15 @@ class App extends Component {
     // -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
 
     const addPokemon = ( async () => {
-      let pictures = []
+      let images = []
       let data = []
       for(let i=1; i <= 151; i++) {
         let pokePic = await fetch(`https://pokeres.bastionbot.org/images/pokemon/${i}.png`)
         let pokeResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
         let pokeData = await pokeResponse.json();
-        pictures.push(pokePic.url)
+        images.push(pokePic.url)
         data.push(pokeData.name)
-        this.setState( {pokemon: {pics: pictures, stats: data}})
+        this.setState( {pokemon: {images: images, stats: data}})
       }
     })();
 
@@ -49,13 +49,13 @@ class App extends Component {
       let filteredPokemonImg = []
       let filteredPokemonStat = this.state.pokemon.stats.filter((stat, index) => {
         if(stat.toLowerCase().includes(this.state.searchField.toLowerCase())) {
-          filteredPokemonImg.push(this.state.pokemon.pics[index])
+          filteredPokemonImg.push(this.state.pokemon.images[index])
         }
         
         return stat.toLowerCase().includes(this.state.searchField.toLowerCase())
       })
 
-      return {pics: filteredPokemonImg, stats: filteredPokemonStat}
+      return {images: filteredPokemonImg, stats: filteredPokemonStat}
     }
 
 
