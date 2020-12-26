@@ -39,21 +39,30 @@ class App extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({searchField: e.target.value}, () => console.log(this.state.searchField))
+    this.setState({searchField: e.target.value})
   }
 
 
   render() {
-    const filteredPokemon = this.state.pokemon.stats.filter((stat, index) => {
-      return stat.toLowerCase().includes(this.state.searchField.toLowerCase())
-    })
 
-    console.log(filteredPokemon)
+    const filterPokemon = () => {
+      let filteredPokemonImg = []
+      let filteredPokemonStat = this.state.pokemon.stats.filter((stat, index) => {
+        if(stat.toLowerCase().includes(this.state.searchField.toLowerCase())) {
+          filteredPokemonImg.push(this.state.pokemon.pics[index])
+        }
+        
+        return stat.toLowerCase().includes(this.state.searchField.toLowerCase())
+      })
+
+      return {pics: filteredPokemonImg, stats: filteredPokemonStat}
+    }
+
 
     return (
       <div className="App">
           <Display length={this.state.pokemon.stats.length} title={this.state.title} handleChange={this.handleChange} />
-          <CardList pokemon={this.state.pokemon}></CardList>
+          <CardList pokemon={filterPokemon()}></CardList>
       </div>
     );
   }

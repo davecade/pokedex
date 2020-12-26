@@ -94,4 +94,10 @@ code {
 .card-content:hover {
   transform: scale(1.2);
 }
+
+.searchbar {
+  border-radius: 5px;
+  padding: .5rem;
+  margin: 1rem 0;
+}
 /*# sourceMappingURL=main.css.map */
