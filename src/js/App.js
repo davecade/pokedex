@@ -1,9 +1,7 @@
-import logo from '../logo.svg';
 import '../css/main.css';
 import { Component, Fragment } from 'react';
-import { CardList } from './components/card-list/card-list.component'
-import { SearchBar } from './components/search-bar/search-bar.component'
-import { LoadingBar } from './components/loading-bar/loading-bar.component'
+import { CardList } from './components/card-list/card-list.component';
+import { Display } from './components/display/display.component';
 
 
 
@@ -47,44 +45,17 @@ class App extends Component {
     this.setState({searchField: e.target.value}, () => console.log(this.state.searchField))
   }
 
-  
-  render() {
 
+  render() {
     const filteredPokemon = this.state.pokemon.stats.filter((stat, index) => {
       return stat.toLowerCase().includes(this.state.searchField.toLowerCase())
     })
-
-    // -- Runs loading bar if loading is in progress
-    const loadingInProgress = () => {
-      const LoadngBarEl = document.querySelector('.loading-bar')
-      if(LoadngBarEl) {
-        let currentLength = this.state.pokemon.stats.length
-        let percent = Math.floor((currentLength/151)*100)
-        LoadngBarEl.style = `width: ${percent}%`
-      }
-    }
-
-    // -- Displays loading bar if not all pokemon are loaded
-    // -- displays heading and search filters when all 151 pokemon are loaded
-    const display = () => {
-      if(this.state.pokemon.stats.length < 151) {
-        return <LoadingBar />
-      } else {
-        return (
-          <Fragment>
-              <h1 className="title">{this.state.title}</h1>
-              <SearchBar handleChange={this.handleChange} />
-          </Fragment>
-        )
-      }
-    }
 
     console.log(filteredPokemon)
 
     return (
       <div className="App">
-          {display()}
-          {this.state.pokemon.stats.length < 151 ? loadingInProgress() : ''}
+          <Display length={this.state.pokemon.stats.length} title={this.state.title} handleChange={this.handleChange} />
           <CardList pokemon={this.state.pokemon}></CardList>
       </div>
     );
