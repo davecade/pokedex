@@ -1,7 +1,8 @@
 import { Component, Fragment } from 'react';
-import './app.styles.scss'
+import './app.styles.scss';
 import { CardList } from './components/card-list/card-list.component';
 import { Display } from './components/display/display.component';
+import { Modal } from './components/modal/modal.component';
 
 class App extends Component {
 
@@ -42,6 +43,10 @@ class App extends Component {
     this.setState({searchField: e.target.value})
   }
 
+  handleClickOnCard = () => {
+    console.log("Card clicked")
+  }
+
 
   render() {
 
@@ -61,8 +66,9 @@ class App extends Component {
 
     return (
       <div className="App">
+          <Modal />
           <Display length={this.state.pokemon.stats.length} title={this.state.title} handleChange={this.handleChange} />
-          <CardList pokemon={filterPokemon()}></CardList>
+          <CardList handleClickOnCard={this.handleClickOnCard} pokemon={filterPokemon()}></CardList>
       </div>
     );
   }
