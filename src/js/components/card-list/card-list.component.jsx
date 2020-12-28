@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Card } from '../card/card.component'
+import './card-list.styles.scss'
 
 export const CardList = ({pokemon}) => {
     const iterator = new Array(pokemon.stats.length).fill(1)

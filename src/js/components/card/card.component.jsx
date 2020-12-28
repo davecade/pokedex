@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import './card.styles.scss';
 
 export const Card = ({pokemon}) => (
     <div className="card-content">

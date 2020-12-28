@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import './loading-bar.styles.scss';
 
 export const LoadingBar = ({length}) => {
     let percent;

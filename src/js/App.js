@@ -1,5 +1,5 @@
-import '../css/main.css';
 import { Component, Fragment } from 'react';
+import './app.styles.scss'
 import { CardList } from './components/card-list/card-list.component';
 import { Display } from './components/display/display.component';
 
