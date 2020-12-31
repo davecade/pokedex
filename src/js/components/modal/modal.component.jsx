@@ -7,7 +7,7 @@ export const Modal = ({clickedData}) => {
         <Fragment>
             <div className="modal">
                 <div className="modal-content">
-                    <CardView pokemon={{img: clickedData[1], name: clickedData[0]}}/>
+                    <CardView pokemon={{image: clickedData.image, name: clickedData.name}}/>
                 </div>
             </div>
         </Fragment>

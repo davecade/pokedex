@@ -25,16 +25,19 @@
     transition: all .3s;
     visibility: hidden;
     opacity: 1;
+    border-radius: 20px;
 
     .modal-content {
-        width: 400px;
+        width: 800px;
+        height: 700px;
         top: 25%;
         border-radius: 5px;
         background: #fff;
         transition: all 1s;
-        visibility: hidden;
+        visibility: visible;
         opacity: 1;
         position: fixed;
+        border-radius: 20px;
 
         .modal-title {
             background: #02026d;

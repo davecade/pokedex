@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './cardview.styles.scss'
 
 export const CardView = ({pokemon}) => {
-    return (
+return (
         <div className="cardview">
             <h1 className="cardview-name">{pokemon.name}</h1>
             <div className="cardview-content">
-                <img src={pokemon.img} alt="" className="cardview-img"/>
-                <div className="cardview-stats">
+                    <div className="cardview-stats">
+                    <p>PUT</p>
                     <p>STATS</p>
+                    <p>AND</p>
                     <p>DESCRIPTON</p>
+                    <p>HERE</p>
                 </div>
+                <img src={pokemon.image} alt="" className="cardview-img"/>
             </div>
+            <div className="red"></div>
         </div>
     )
 }

@@ -13,11 +13,27 @@ class App extends Component {
       pokemon: {
         images: [],
         names: [],
-        types: []
+        types: [],
+        heights: [],
+        weights: [],
+        hps: [],
+        attacks: [],
+        defenses: [],
+        speeds: []
       },
       title: "Dave's Pokedex",
       searchField: '',
-      clicked: []
+      clicked: {
+        image: '',
+        name: '',
+        type: '',
+        height: '',
+        weight: '',
+        hp: '',
+        attack: '',
+        defense: '',
+        speed: ''
+      }
     }
   }
 
@@ -29,17 +45,33 @@ class App extends Component {
     const addPokemon = ( async () => {
       let images = []
       let names = []
+      let types = []
+      let hps = []
+      let heights = []
+      let weights = []
+      let attacks = []
+      let defenses = []
+      let speeds = []
+
       for(let i=1; i <= 151; i++) {
         let pokePic = await fetch(`https://pokeres.bastionbot.org/images/pokemon/${i}.png`)
         let pokeResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
-        let charResponse = await fetch(`https://pokeapi.co/api/v2/characteristic/6/`)
         let pokeData = await pokeResponse.json();
-        let characteristics = await charResponse.json()
-        console.log(pokeData)
+        let typeList = []
+
+        
+        for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
+        types.push(typeList)
         images.push(pokePic.url)
         names.push(pokeData.name)
-        
-        this.setState( {pokemon: {images: images, names: names}})
+        hps.push(pokeData.stats[0].base_stat)
+        attacks.push(pokeData.stats[1].base_stat)
+        defenses.push(pokeData.stats[2].base_stat)
+        speeds.push(pokeData.stats[5].base_stat)
+        heights.push(pokeData.height)
+        weights.push(pokeData.weight)
+        this.setState( {pokemon: {images, names, types, hps, heights, weights, attacks, defenses, speeds}})
+    
       }
       
     })();
@@ -52,15 +84,23 @@ class App extends Component {
 
   handleClickOnCard = (e) => {
     let clickedCard = e.target.closest('.card-content')
-    let pokemonName = clickedCard.firstChild.innerHTML;
-    let pokemonImg = clickedCard.firstChild.nextSibling.src
-    console.log(this.state.pokemon.names)
-    this.setState({clicked: [pokemonName, pokemonImg]})
+    let clickedCardId = clickedCard.getAttribute("id")
+
+    this.setState({clicked: {
+      image: this.state.pokemon.images[clickedCardId],
+      name: this.state.pokemon.names[clickedCardId],
+      type: this.state.pokemon.types[clickedCardId],
+      height: this.state.pokemon.heights[clickedCardId],
+      weight: this.state.pokemon.weights[clickedCardId],
+      hp: this.state.pokemon.hps[clickedCardId],
+      attack: this.state.pokemon.attacks[clickedCardId],
+      defense: this.state.pokemon.defenses[clickedCardId],
+      speed: this.state.pokemon.speeds[clickedCardId]
+    }})
   }
 
 
   render() {
-
     const filterPokemon = () => {
       let filteredPokemonImg = []
       let filteredPokemonStat = this.state.pokemon.names.filter((stat, index) => {
