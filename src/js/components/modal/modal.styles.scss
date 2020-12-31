@@ -23,16 +23,18 @@
     align-items: center;
     justify-content: center;
     transition: all .3s;
-    visibility: visible;
+    visibility: hidden;
     opacity: 1;
 
     .modal-content {
         width: 400px;
+        top: 25%;
         border-radius: 5px;
         background: #fff;
         transition: all 1s;
         visibility: visible;
         opacity: 1;
+        position: fixed;
 
         .modal-title {
             background: #02026d;
@@ -72,6 +74,11 @@
 
         h4 {
             padding: 1rem;
+            color: black;
+        }
+
+        p {
+            color: black
         }
 
 

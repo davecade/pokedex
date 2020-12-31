@@ -1,4 +1,4 @@
-import { Component, Fragment } from 'react';
+import { Children, Component, Fragment } from 'react';
 import './app.styles.scss';
 import { CardList } from './components/card-list/card-list.component';
 import { Display } from './components/display/display.component';
@@ -15,7 +15,8 @@ class App extends Component {
         stats: []
       },
       title: "Dave's Pokedex",
-      searchField: ''
+      searchField: '',
+      clicked: []
     }
   }
 
@@ -43,8 +44,12 @@ class App extends Component {
     this.setState({searchField: e.target.value})
   }
 
-  handleClickOnCard = () => {
-    console.log("Card clicked")
+  handleClickOnCard = (e) => {
+    let clickedCard = e.target.closest('.card-content')
+    let pokemonName = clickedCard.firstChild.innerHTML;
+    let pokemonImg = clickedCard.firstChild.nextSibling.src
+    
+    this.setState({clicked: [pokemonName, pokemonImg]})
   }
 
 
@@ -66,7 +71,7 @@ class App extends Component {
 
     return (
       <div className="App">
-          <Modal />
+          <Modal clickedData={this.state.clicked} />
           <Display length={this.state.pokemon.stats.length} title={this.state.title} handleChange={this.handleChange} />
           <CardList handleClickOnCard={this.handleClickOnCard} pokemon={filterPokemon()}></CardList>
       </div>
