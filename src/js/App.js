@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       pokemon: {
         images: [],
-        names: []
+        names: [],
+        types: []
       },
       title: "Dave's Pokedex",
       searchField: '',
@@ -31,10 +32,10 @@ class App extends Component {
       for(let i=1; i <= 151; i++) {
         let pokePic = await fetch(`https://pokeres.bastionbot.org/images/pokemon/${i}.png`)
         let pokeResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
-        let charResponse = await fetch(`https://pokeapi.co/api/v2/characteristic/1/`)
+        let charResponse = await fetch(`https://pokeapi.co/api/v2/characteristic/6/`)
         let pokeData = await pokeResponse.json();
         let characteristics = await charResponse.json()
-        console.log(characteristics)
+        console.log(pokeData)
         images.push(pokePic.url)
         names.push(pokeData.name)
         

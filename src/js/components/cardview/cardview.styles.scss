@@ -1,0 +1,26 @@
+.cardview {
+    background: #750101;
+    .cardview-name {
+
+    }
+
+    .cardview-content {
+        display: flex;
+        padding: 1rem;
+
+
+        .cardview-img {
+            width: 200px;
+            height: 250px;
+            border-right: 1px solid black;
+        }
+
+        .cardview-stats {
+            padding: 0 1rem;
+
+            p {
+                color: white;
+            }
+        }
+    }
+}

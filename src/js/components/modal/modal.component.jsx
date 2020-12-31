@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import './modal.styles.scss';
-import { Card } from '../card/card.component'
+import { CardView } from '../cardview/cardview.component'
 
 export const Modal = ({clickedData}) => {
     return(
         <Fragment>
             <div className="modal">
                 <div className="modal-content">
-                    <Card pokemon={{img: clickedData[1], stat: clickedData[0]}}/>
+                    <CardView pokemon={{img: clickedData[1], name: clickedData[0]}}/>
                 </div>
             </div>
         </Fragment>
