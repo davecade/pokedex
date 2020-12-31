@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       pokemon: {
         images: [],
-        stats: []
+        names: []
       },
       title: "Dave's Pokedex",
       searchField: '',
@@ -27,15 +27,20 @@ class App extends Component {
 
     const addPokemon = ( async () => {
       let images = []
-      let data = []
+      let names = []
       for(let i=1; i <= 151; i++) {
         let pokePic = await fetch(`https://pokeres.bastionbot.org/images/pokemon/${i}.png`)
         let pokeResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+        let charResponse = await fetch(`https://pokeapi.co/api/v2/characteristic/1/`)
         let pokeData = await pokeResponse.json();
+        let characteristics = await charResponse.json()
+        console.log(characteristics)
         images.push(pokePic.url)
-        data.push(pokeData.name)
-        this.setState( {pokemon: {images: images, stats: data}})
+        names.push(pokeData.name)
+        
+        this.setState( {pokemon: {images: images, names: names}})
       }
+      
     })();
 
   }
@@ -48,7 +53,7 @@ class App extends Component {
     let clickedCard = e.target.closest('.card-content')
     let pokemonName = clickedCard.firstChild.innerHTML;
     let pokemonImg = clickedCard.firstChild.nextSibling.src
-    
+    console.log(this.state.pokemon.names)
     this.setState({clicked: [pokemonName, pokemonImg]})
   }
 
@@ -57,7 +62,7 @@ class App extends Component {
 
     const filterPokemon = () => {
       let filteredPokemonImg = []
-      let filteredPokemonStat = this.state.pokemon.stats.filter((stat, index) => {
+      let filteredPokemonStat = this.state.pokemon.names.filter((stat, index) => {
         if(stat.toLowerCase().includes(this.state.searchField.toLowerCase())) {
           filteredPokemonImg.push(this.state.pokemon.images[index])
         }
@@ -65,14 +70,14 @@ class App extends Component {
         return stat.toLowerCase().includes(this.state.searchField.toLowerCase())
       })
 
-      return {images: filteredPokemonImg, stats: filteredPokemonStat}
+      return {images: filteredPokemonImg, names: filteredPokemonStat}
     }
 
 
     return (
       <div className="App">
           <Modal clickedData={this.state.clicked} />
-          <Display length={this.state.pokemon.stats.length} title={this.state.title} handleChange={this.handleChange} />
+          <Display length={this.state.pokemon.names.length} title={this.state.title} handleChange={this.handleChange} />
           <CardList handleClickOnCard={this.handleClickOnCard} pokemon={filterPokemon()}></CardList>
       </div>
     );

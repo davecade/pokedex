@@ -7,14 +7,7 @@ export const Modal = ({clickedData}) => {
         <Fragment>
             <div className="modal">
                 <div className="modal-content">
-                    <div className="modal-title">
-                        <h3>Sign Up</h3>
-                        <div className="close">
-                            <div className="first"></div>
-                            <div className="second"></div>
-                        </div>
-                    </div>
-                    <Card pokemon={{img: clickedData[0], stat: clickedData[1]}}/>
+                    <Card pokemon={{img: clickedData[1], stat: clickedData[0]}}/>
                 </div>
             </div>
         </Fragment>
