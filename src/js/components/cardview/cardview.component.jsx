@@ -8,7 +8,7 @@ return (
                 <h1 className="cardview-name">{pokemon.name}</h1>
             </div>
             <div className="cardview-content">
-                    <div className="cardview-stats">
+                <div className="cardview-stats">
                     <p>PUT</p>
                     <p>STATS</p>
                     <p>AND</p>

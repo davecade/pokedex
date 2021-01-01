@@ -33,7 +33,8 @@ class App extends Component {
         attack: '',
         defense: '',
         speed: ''
-      }
+      },
+      canClick: true
     }
   }
 
@@ -82,9 +83,57 @@ class App extends Component {
     this.setState({searchField: e.target.value})
   }
 
+  toggleModal = (event = null) => {
+    let modalEl = document.querySelector('.modal')
+    let modalContentEl = document.querySelector('.modal-content')
+
+    if (modalEl.style.visibility !== 'visible' && modalContentEl.style.visibility !== 'visible') {
+
+      if (event.target.matches(".modal")) {
+        if (this.state.canClick === true) {
+            modalEl.style.visibility = "visible";
+            modalEl.style.opacity = "1";
+            modalContentEl.style.visibility = "visible";
+            modalContentEl.style.opacity = "1";
+            modalContentEl.style.width = "1000px"
+            this.setState({canClick: false})
+            setTimeout(() => {
+              this.setState({canClick: true})
+            }, 1000)
+        }
+      } else {
+            modalEl.style.visibility = "visible";
+            modalEl.style.opacity = "1";
+            modalContentEl.style.visibility = "visible";
+            modalContentEl.style.opacity = "1";
+            modalContentEl.style.width = "1000px"
+      }
+
+    } else if (modalEl.style.visibility == 'visible' && modalContentEl.style.visibility == 'visible') {
+
+      if (event.target.matches(".modal")) {
+          if (this.state.canClick === true) {
+            modalEl.style.visibility = 'hidden';
+            modalEl.style.opacity = "0";
+            modalContentEl.style.visibility = 'hidden';
+            modalContentEl.style.opacity = "0";
+            modalContentEl.style.width = "0px"
+            // this.setState({canClick: false})
+            // setTimeout(() => {
+            //   this.setState({canClick: true})
+            // }, 1000)
+          }
+      }
+
+    }
+
+  }
+
   handleClickOnCard = (e) => {
     let clickedCard = e.target.closest('.card-content')
     let clickedCardId = clickedCard.getAttribute("id")
+    this.toggleModal(e);
+    
 
     this.setState({clicked: {
       image: this.state.pokemon.images[clickedCardId],
@@ -97,6 +146,8 @@ class App extends Component {
       defense: this.state.pokemon.defenses[clickedCardId],
       speed: this.state.pokemon.speeds[clickedCardId]
     }})
+
+    
   }
 
 
@@ -117,7 +168,7 @@ class App extends Component {
 
     return (
       <div className="App">
-          <Modal clickedData={this.state.clicked} />
+          <Modal clickedData={this.state.clicked} toggleModal={this.toggleModal} />
           <Display length={this.state.pokemon.names.length} title={this.state.title} handleChange={this.handleChange} />
           <CardList handleClickOnCard={this.handleClickOnCard} pokemon={filterPokemon()}></CardList>
       </div>
