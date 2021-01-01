@@ -19,7 +19,8 @@ class App extends Component {
         hps: [],
         attacks: [],
         defenses: [],
-        speeds: []
+        speeds: [],
+        ids: []
       },
       title: "Dave's Pokedex",
       searchField: '',
@@ -53,13 +54,14 @@ class App extends Component {
       let attacks = []
       let defenses = []
       let speeds = []
+      let ids = []
 
       for(let i=1; i <= 151; i++) {
         let pokePic = await fetch(`https://pokeres.bastionbot.org/images/pokemon/${i}.png`)
         let pokeResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
         let pokeData = await pokeResponse.json();
         let typeList = []
-
+        console.log(pokeData.id)
         
         for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
         types.push(typeList)
@@ -71,7 +73,8 @@ class App extends Component {
         speeds.push(pokeData.stats[5].base_stat)
         heights.push(pokeData.height)
         weights.push(pokeData.weight)
-        this.setState( {pokemon: {images, names, types, hps, heights, weights, attacks, defenses, speeds}})
+        ids.push(pokeData.id)
+        this.setState( {pokemon: {images, names, types, hps, heights, weights, attacks, defenses, speeds, ids}})
     
       }
       
@@ -94,7 +97,7 @@ class App extends Component {
             modalEl.style.visibility = "visible";
             modalEl.style.opacity = "1";
             modalContentEl.style.visibility = "visible";
-            modalContentEl.style.opacity = "1";
+            //modalContentEl.style.opacity = "1";
             modalContentEl.style.width = "1000px"
             this.setState({canClick: false})
             setTimeout(() => {
@@ -105,7 +108,7 @@ class App extends Component {
             modalEl.style.visibility = "visible";
             modalEl.style.opacity = "1";
             modalContentEl.style.visibility = "visible";
-            modalContentEl.style.opacity = "1";
+            //modalContentEl.style.opacity = "1";
             modalContentEl.style.width = "1000px"
       }
 
@@ -114,9 +117,9 @@ class App extends Component {
       if (event.target.matches(".modal")) {
           if (this.state.canClick === true) {
             modalEl.style.visibility = 'hidden';
-            modalEl.style.opacity = "0";
+            //modalEl.style.opacity = "0";
             modalContentEl.style.visibility = 'hidden';
-            modalContentEl.style.opacity = "0";
+            //modalContentEl.style.opacity = "0";
             modalContentEl.style.width = "0px"
             // this.setState({canClick: false})
             // setTimeout(() => {
@@ -132,6 +135,7 @@ class App extends Component {
   handleClickOnCard = (e) => {
     let clickedCard = e.target.closest('.card-content')
     let clickedCardId = clickedCard.getAttribute("id")
+    console.log(clickedCard)
     this.toggleModal(e);
     
 
@@ -154,15 +158,17 @@ class App extends Component {
   render() {
     const filterPokemon = () => {
       let filteredPokemonImg = []
+      let newids = []
       let filteredPokemonStat = this.state.pokemon.names.filter((stat, index) => {
         if(stat.toLowerCase().includes(this.state.searchField.toLowerCase())) {
           filteredPokemonImg.push(this.state.pokemon.images[index])
+          newids.push(index)
         }
         
         return stat.toLowerCase().includes(this.state.searchField.toLowerCase())
       })
 
-      return {images: filteredPokemonImg, names: filteredPokemonStat}
+      return {images: filteredPokemonImg, names: filteredPokemonStat, ids: newids}
     }
 
 

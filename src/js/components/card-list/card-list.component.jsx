@@ -11,7 +11,7 @@ export const CardList = ({pokemon, handleClickOnCard}) => {
                 <div className="card-list-container">
                     {
                         iterator.map((item, index) => (
-                            <Card key={index} id={index} handleClickOnCard={handleClickOnCard} pokemon={{img: pokemon.images[index], name: pokemon.names[index]}}/>
+                            <Card key={index} handleClickOnCard={handleClickOnCard} pokemon={{img: pokemon.images[index], name: pokemon.names[index], id: pokemon.ids[index]}}/>
                         ))
                     }
                 </div>
