@@ -26,13 +26,18 @@
     //     transform: scale(2) translateX(-5%) translateY(-5%) rotate(-28deg);
     // }
 
-    .cardview-name {
+    .name-container {
         position: relative;
-        background: black;
-        margin-top:  1.5rem;
-        text-transform: uppercase;
-        justify-self: flex-end;
-        z-index: 1000;
+        display: flex;
+        justify-content: flex-end;
+        z-index: 1;
+
+        .cardview-name {
+            text-transform: uppercase;
+            z-index: 1;
+            width: 45%;
+            background: black;
+        }
     }
 
     .cardview-content {
@@ -54,7 +59,6 @@
 
         .cardview-stats {
             padding: 0 1rem;
-
             width: 400px;
             height: 300px;
             align-self: flex-start;

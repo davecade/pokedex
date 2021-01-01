@@ -4,7 +4,9 @@ import './cardview.styles.scss'
 export const CardView = ({pokemon}) => {
 return (
         <div className="cardview">
-            <h1 className="cardview-name">{pokemon.name}</h1>
+            <div className="name-container">
+                <h1 className="cardview-name">{pokemon.name}</h1>
+            </div>
             <div className="cardview-content">
                     <div className="cardview-stats">
                     <p>PUT</p>
