@@ -35,7 +35,7 @@ class App extends Component {
         defense: '',
         speed: ''
       },
-      canClick: true
+      modalEnabled: false
     }
   }
 
@@ -61,7 +61,6 @@ class App extends Component {
           let pokeResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
           let pokeData = await pokeResponse.json();
           let typeList = []
-          console.log(pokeData.id)
           
           for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
           types.push(typeList)
@@ -81,61 +80,28 @@ class App extends Component {
 
   }
 
-  handleChange = (e) => {
-    this.setState({searchField: e.target.value})
-  }
+  handleChange = (e) => this.setState({searchField: e.target.value})
 
-  toggleModal = (e = null) => {
-    let modalEl = document.querySelector('.modal')
-    let modalContentEl = document.querySelector('.modal-content')
-
-    if (modalEl.style.visibility !== 'visible' && modalContentEl.style.visibility !== 'visible') {
-
-      if (e.target.matches(".modal")) {
-        if (this.state.canClick === true) {
-            modalEl.style.visibility = "visible";
-            modalEl.style.opacity = "1";
-            modalContentEl.style.visibility = "visible";
-            modalContentEl.style.width = "1000px"
-            this.setState({canClick: false})
-            setTimeout(() => {
-              this.setState({canClick: true})
-            }, 1000)
-        }
-      } else {
-            modalEl.style.visibility = "visible";
-            modalEl.style.opacity = "1";
-            modalContentEl.style.visibility = "visible";
-            modalContentEl.style.width = "1000px"
-      }
-    } else if (modalEl.style.visibility == 'visible' && modalContentEl.style.visibility == 'visible') {
-        if (e.target.matches(".modal")) {
-            if (this.state.canClick === true) {
-              modalEl.style.visibility = 'hidden';
-              modalContentEl.style.visibility = 'hidden';
-              modalContentEl.style.width = "0px"
-            }
-        }
-    }
-  }
+  disableModal = () => this.setState({modalEnabled: false})
 
   handleClickOnCard = (e) => {
     let clickedCard = e.target.closest('.card-content')
     let clickedCardId = clickedCard.getAttribute("id")
-
-    this.toggleModal(e);
     
-    this.setState({clicked: {
-      image: this.state.pokemon.images[clickedCardId],
-      name: this.state.pokemon.names[clickedCardId],
-      type: this.state.pokemon.types[clickedCardId],
-      height: this.state.pokemon.heights[clickedCardId],
-      weight: this.state.pokemon.weights[clickedCardId],
-      hp: this.state.pokemon.hps[clickedCardId],
-      attack: this.state.pokemon.attacks[clickedCardId],
-      defense: this.state.pokemon.defenses[clickedCardId],
-      speed: this.state.pokemon.speeds[clickedCardId]
-    }})
+    this.setState({
+      clicked: {
+        image: this.state.pokemon.images[clickedCardId],
+        name: this.state.pokemon.names[clickedCardId],
+        type: this.state.pokemon.types[clickedCardId],
+        height: this.state.pokemon.heights[clickedCardId],
+        weight: this.state.pokemon.weights[clickedCardId],
+        hp: this.state.pokemon.hps[clickedCardId],
+        attack: this.state.pokemon.attacks[clickedCardId],
+        defense: this.state.pokemon.defenses[clickedCardId],
+        speed: this.state.pokemon.speeds[clickedCardId]
+      },
+      modalEnabled: true
+    })
 
     
   }
@@ -160,7 +126,7 @@ class App extends Component {
 
     return (
       <div className="App">
-          <Modal clickedData={this.state.clicked} toggleModal={this.toggleModal} />
+          <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} />
           <Display length={this.state.pokemon.names.length} title={this.state.title} handleChange={this.handleChange} />
           <CardList handleClickOnCard={this.handleClickOnCard} pokemon={filterPokemon()}></CardList>
       </div>
