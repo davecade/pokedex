@@ -43,6 +43,7 @@ class App extends Component {
 
     // -- Pokemon Image API: https://pokeres.bastionbot.org/images/pokemon/1.png
     // -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
+    // -- Pokemon Evolution Data API: https://pokeapi.co/api/v2/evolution-chain/1
 
     const addPokemon = ( async () => {
       let images = []
@@ -59,9 +60,12 @@ class App extends Component {
       for(let i=1; i <= 151; i++) {
           let pokePic = await fetch(`https://pokeres.bastionbot.org/images/pokemon/${i}.png`)
           let pokeResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+          let pokeEvolution = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${i}`)
           let pokeData = await pokeResponse.json();
+          let pokeEvolutionData = await pokeEvolution.json();
           let typeList = []
-          
+          console.log(pokeEvolutionData)
+
           for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
           types.push(typeList)
           images.push(pokePic.url)
