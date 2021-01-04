@@ -3,50 +3,43 @@ import './modal.styles.scss';
 import { CardView } from '../cardview/cardview.component'
 
 export const Modal = ({clickedData, modalEnabled, disableModal}) => {
-    
-    console.log("hello")
+    let visibility
+    let width
+
     if(modalEnabled) {
-        return(
-            <Fragment>
-                <div 
-                    className="modal"
-                    onClick={disableModal}
-                    style={
-                        {visibility: "visible"}
-                    }
-                >
-                    <div 
-                        className="modal-content"
-                        style={
-                            {visibility: "visible", width: "1000px"}
-                        }
-                    >
-                        <CardView pokemon={clickedData}/>
-                    </div>
-                </div>
-            </Fragment>
-        )
+        visibility = "visible";
+        width = "1000px";
     } else {
-        return(
-            <Fragment>
-                <div
-                    className="modal"
-                    style={
-                        {visibility: "hidden"}
-                    }
-                >
-                    <div
-                        className="modal-content"
-                        style={
-                            {visibility: "hidden", width: "0px"}
-                        }
-                    >
-                        <CardView pokemon={clickedData}/>
-                    </div>
-                </div>
-            </Fragment>
-        )
+        visibility = "hidden";
+        width = "0px";
     }
 
+    const toggleModal = (e) => {
+        if(e.target.matches('.modal')) {
+            return disableModal()
+        }
+    }
+    
 
+    return(
+        <Fragment>
+            <div 
+                className="modal"
+                onClick={toggleModal}
+                style={{
+                    visibility: visibility
+                }}
+            >
+                <div 
+                    className="modal-content"
+                    style={{
+                        visibility: visibility, 
+                        width: width
+                    }}
+                >
+                    <CardView pokemon={clickedData}/>
+                </div>
+            </div>
+        </Fragment>
+    )
 }
