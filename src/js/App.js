@@ -130,9 +130,12 @@ class App extends Component {
 
     return (
       <div className="App">
-          <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} />
-          <Display length={this.state.pokemon.names.length} title={this.state.title} handleChange={this.handleChange} />
-          <CardList handleClickOnCard={this.handleClickOnCard} pokemon={filterPokemon()}></CardList>
+        <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} />
+          <layer>
+            <Display length={this.state.pokemon.names.length} title={this.state.title} handleChange={this.handleChange} />
+            <CardList handleClickOnCard={this.handleClickOnCard} pokemon={filterPokemon()}></CardList>
+          </layer>
+
       </div>
     );
   }
