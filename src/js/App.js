@@ -64,7 +64,7 @@ class App extends Component {
           let pokeData = await pokeResponse.json();
           let pokeEvolutionData = await pokeEvolution.json();
           let typeList = []
-          console.log(pokeEvolutionData)
+          //console.log(pokeEvolutionData)
 
           for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
           types.push(typeList)

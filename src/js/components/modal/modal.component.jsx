@@ -6,6 +6,10 @@ export const Modal = ({clickedData, modalEnabled, disableModal}) => {
     let visibility
     let width
 
+    document.onkeydown = function(e) {
+        if(e.key == 'Escape') disableModal()
+    };
+
     if(modalEnabled) {
         visibility = "visible";
         width = "1000px";
@@ -15,8 +19,11 @@ export const Modal = ({clickedData, modalEnabled, disableModal}) => {
     }
 
     const toggleModal = (e) => {
+        let test = e.target.closest('.modal-content')
+        console.log(test)
+
         if(e.target.matches('.modal')) {
-            return disableModal()
+            disableModal()
         }
     }
     
