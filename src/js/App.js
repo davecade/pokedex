@@ -56,19 +56,24 @@ class App extends Component {
       let defenses = []
       let speeds = []
       let ids = []
+      let evolveChain = []
 
       for(let i=1; i <= 151; i++) {
-          let pokePic = await fetch(`https://pokeres.bastionbot.org/images/pokemon/${i}.png`)
-          let pokeResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
-          let pokeEvolution = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${i}`)
-          let pokeData = await pokeResponse.json();
-          let pokeEvolutionData = await pokeEvolution.json();
-          let typeList = []
-          //console.log(pokeEvolutionData)
+          let pokePic = fetch(`https://pokeres.bastionbot.org/images/pokemon/${i}.png`)
+          let pokeResponse = fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+          let pokeEvolution = fetch(`https://pokeapi.co/api/v2/evolution-chain/${i}`)    
+          let allData = await Promise.all([pokePic, pokeResponse, pokeEvolution])
+          let pokeData = await allData[1].json();
+          let pokeEvolutionData = await allData[2].json();
 
+          if(i < 79) {
+            evolveChain.push(pokeEvolutionData.chain)
+          }
+          
+          let typeList = []
           for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
           types.push(typeList)
-          images.push(pokePic.url)
+          images.push(allData[0].url)
           names.push(pokeData.name)
           hps.push(pokeData.stats[0].base_stat)
           attacks.push(pokeData.stats[1].base_stat)
@@ -76,10 +81,10 @@ class App extends Component {
           speeds.push(pokeData.stats[5].base_stat)
           heights.push(pokeData.height)
           weights.push(pokeData.weight)
-          ids.push(pokeData.id)
           this.setState( {pokemon: {images, names, types, hps, heights, weights, attacks, defenses, speeds, ids}})
       }
-      
+
+
     })();
 
   }
@@ -91,7 +96,7 @@ class App extends Component {
   handleClickOnCard = (e) => {
     let clickedCard = e.target.closest('.card-content')
     let clickedCardId = clickedCard.getAttribute("id")
-    
+    console.log("clicked ID", clickedCardId)
     this.setState({
       clicked: {
         image: this.state.pokemon.images[clickedCardId],
