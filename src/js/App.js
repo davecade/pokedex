@@ -55,7 +55,6 @@ class App extends Component {
       let attacks = []
       let defenses = []
       let speeds = []
-      let ids = []
       let evolveChain = []
 
       for(let i=1; i <= 151; i++) {
@@ -81,7 +80,7 @@ class App extends Component {
           speeds.push(pokeData.stats[5].base_stat)
           heights.push(pokeData.height)
           weights.push(pokeData.weight)
-          this.setState( {pokemon: {images, names, types, hps, heights, weights, attacks, defenses, speeds, ids}})
+          this.setState( {pokemon: {images, names, types, hps, heights, weights, attacks, defenses, speeds}})
       }
 
 
