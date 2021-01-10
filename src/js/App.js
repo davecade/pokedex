@@ -62,8 +62,9 @@ class App extends Component {
           let pokeResponse = fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
           let pokeEvolution = fetch(`https://pokeapi.co/api/v2/evolution-chain/${i}`)    
           let allData = await Promise.all([pokePic, pokeResponse, pokeEvolution])
-          let pokeData = await allData[1].json();
-          let pokeEvolutionData = await allData[2].json();
+          let allDataJsonConverted = await Promise.all([allData[1].json(), allData[2].json()])
+          let pokeData = allDataJsonConverted[0]
+          let pokeEvolutionData = allDataJsonConverted[1]
 
           if(i < 79) {
             evolveChain.push(pokeEvolutionData.chain)
