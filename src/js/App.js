@@ -10,31 +10,10 @@ class App extends Component {
     super(props);
 
     this.state = {
-      pokemon: {
-        images: [],
-        names: [],
-        types: [],
-        heights: [],
-        weights: [],
-        hps: [],
-        attacks: [],
-        defenses: [],
-        speeds: [],
-        ids: []
-      },
+      pokemonList: [],
       title: "Dave's Pokedex",
       searchField: '',
-      clicked: {
-        image: '',
-        name: '',
-        type: '',
-        height: '',
-        weight: '',
-        hp: '',
-        attack: '',
-        defense: '',
-        speed: ''
-      },
+      clicked: {},
       modalEnabled: false
     }
   }
@@ -46,15 +25,6 @@ class App extends Component {
     // -- Pokemon Evolution Data API: https://pokeapi.co/api/v2/evolution-chain/1
 
     const addPokemon = ( async () => {
-      let images = []
-      let names = []
-      let types = []
-      let hps = []
-      let heights = []
-      let weights = []
-      let attacks = []
-      let defenses = []
-      let speeds = []
       let evolveChain = []
 
       for(let i=1; i <= 151; i++) {
@@ -65,6 +35,7 @@ class App extends Component {
           let allDataJsonConverted = await Promise.all([allData[1].json(), allData[2].json()])
           let pokeData = allDataJsonConverted[0]
           let pokeEvolutionData = allDataJsonConverted[1]
+          let pokemon;
 
           if(i < 79) {
             evolveChain.push(pokeEvolutionData.chain)
@@ -72,16 +43,20 @@ class App extends Component {
           
           let typeList = []
           for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
-          types.push(typeList)
-          images.push(allData[0].url)
-          names.push(pokeData.name)
-          hps.push(pokeData.stats[0].base_stat)
-          attacks.push(pokeData.stats[1].base_stat)
-          defenses.push(pokeData.stats[2].base_stat)
-          speeds.push(pokeData.stats[5].base_stat)
-          heights.push(pokeData.height)
-          weights.push(pokeData.weight)
-          this.setState( {pokemon: {images, names, types, hps, heights, weights, attacks, defenses, speeds}})
+          pokemon = {
+            id: i,
+            image: allData[0].url,
+            name: pokeData.name,
+            type: typeList,
+            hp: pokeData.stats[0].base_stat,
+            height: pokeData.height,
+            weight: pokeData.weight,
+            attack: pokeData.stats[1].base_stat,
+            defense: pokeData.stats[2].base_stat,
+            speed: pokeData.stats[5].base_stat,
+          }
+
+          this.setState( {pokemonList: [...this.state.pokemonList, pokemon]})
       }
 
 
@@ -132,15 +107,17 @@ class App extends Component {
       return {images: filteredPokemonImg, names: filteredPokemonStat, ids: newids}
     }
 
+    console.log(this.state.pokemon)
 
     return (
       <div className="App">
-        <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} />
-          <layer>
-            <Display length={this.state.pokemon.names.length} title={this.state.title} handleChange={this.handleChange} />
-            <CardList handleClickOnCard={this.handleClickOnCard} pokemon={filterPokemon()}></CardList>
-          </layer>
 
+
+        {/* <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} /> */}
+          <layer>
+            {/* <Display length={this.state.pokemon.names.length} title={this.state.title} handleChange={this.handleChange} /> */}
+            <CardList handleClickOnCard={this.handleClickOnCard} pokemonList={this.state.pokemonList}></CardList>
+          </layer>
       </div>
     );
   }
