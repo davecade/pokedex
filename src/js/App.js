@@ -92,22 +92,8 @@ class App extends Component {
 
 
   render() {
-    const filterPokemon = () => {
-      let filteredPokemonImg = []
-      let newids = []
-      let filteredPokemonStat = this.state.pokemon.names.filter((stat, index) => {
-        if(stat.toLowerCase().includes(this.state.searchField.toLowerCase())) {
-          filteredPokemonImg.push(this.state.pokemon.images[index])
-          newids.push(index)
-        }
-        
-        return stat.toLowerCase().includes(this.state.searchField.toLowerCase())
-      })
-
-      return {images: filteredPokemonImg, names: filteredPokemonStat, ids: newids}
-    }
-
-    console.log(this.state.pokemon)
+    const filterPokemon = () => this.state.pokemonList.filter((pokemon, index) => 
+      pokemon.name.toLowerCase().includes(this.state.searchField.toLowerCase()))
 
     return (
       <div className="App">
@@ -115,8 +101,8 @@ class App extends Component {
 
         {/* <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} /> */}
           <layer>
-            {/* <Display length={this.state.pokemon.names.length} title={this.state.title} handleChange={this.handleChange} /> */}
-            <CardList handleClickOnCard={this.handleClickOnCard} pokemonList={this.state.pokemonList}></CardList>
+            <Display length={this.state.pokemonList.length} title={this.state.title} handleChange={this.handleChange} />
+            <CardList handleClickOnCard={this.handleClickOnCard} pokemonList={filterPokemon()}></CardList>
           </layer>
       </div>
     );
