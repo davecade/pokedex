@@ -38,7 +38,7 @@ export const Modal = ({clickedData, modalEnabled, disableModal}) => {
                         width: width
                     }}
                 >
-                    {modalEnabled ? <CardView pokemon={clickedData}/> : ''}
+                    <CardView pokemon={clickedData}/>
                 </div>
             </div>
         </Fragment>

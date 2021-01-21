@@ -13,7 +13,7 @@ class App extends Component {
       pokemonList: [],
       title: "Dave's Pokedex",
       searchField: '',
-      clicked: {},
+      clicked: {type: []},
       modalEnabled: false
     }
   }
@@ -26,6 +26,7 @@ class App extends Component {
 
     const addPokemon = ( async () => {
       let evolveChain = []
+      let pokemonObj;
 
       for(let i=1; i <= 151; i++) {
           let pokePic = fetch(`https://pokeres.bastionbot.org/images/pokemon/${i}.png`)
@@ -35,7 +36,6 @@ class App extends Component {
           let allDataJsonConverted = await Promise.all([allData[1].json(), allData[2].json()])
           let pokeData = allDataJsonConverted[0]
           let pokeEvolutionData = allDataJsonConverted[1]
-          let pokemonObj;
 
           if(i < 79) {
             evolveChain.push(pokeEvolutionData.chain)
@@ -43,7 +43,7 @@ class App extends Component {
           
           let typeList = []
           for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
-          
+
           pokemonObj = {
             id: i,
             image: allData[0].url,
@@ -74,11 +74,11 @@ class App extends Component {
     this.setState({clicked: this.state.pokemonList[clickedCardId-1], modalEnabled: true})
   }
 
-
+  
   render() {
+
     const filterPokemon = () => this.state.pokemonList.filter( pokemon => 
       pokemon.name.toLowerCase().includes(this.state.searchField.toLowerCase()))
-
     return (
       <div className="App">
         <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} />
