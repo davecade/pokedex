@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import './cardview.styles.scss'
 
 export const CardView = ({pokemon}) => {
+    console.log("poke", pokemon)
 return (
         <div className="cardview">
             <div className="name-container">

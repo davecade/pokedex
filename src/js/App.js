@@ -35,7 +35,7 @@ class App extends Component {
           let allDataJsonConverted = await Promise.all([allData[1].json(), allData[2].json()])
           let pokeData = allDataJsonConverted[0]
           let pokeEvolutionData = allDataJsonConverted[1]
-          let pokemon;
+          let pokemonObj;
 
           if(i < 79) {
             evolveChain.push(pokeEvolutionData.chain)
@@ -43,7 +43,8 @@ class App extends Component {
           
           let typeList = []
           for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
-          pokemon = {
+          
+          pokemonObj = {
             id: i,
             image: allData[0].url,
             name: pokeData.name,
@@ -56,9 +57,8 @@ class App extends Component {
             speed: pokeData.stats[5].base_stat,
           }
 
-          this.setState( {pokemonList: [...this.state.pokemonList, pokemon]})
+          this.setState( {pokemonList: [...this.state.pokemonList, pokemonObj]})
       }
-
 
     })();
 
@@ -71,23 +71,7 @@ class App extends Component {
   handleClickOnCard = (e) => {
     let clickedCard = e.target.closest('.card-content')
     let clickedCardId = clickedCard.getAttribute("id")
-    console.log("clicked ID", clickedCardId)
-    this.setState({
-      clicked: {
-        image: this.state.pokemon.images[clickedCardId],
-        name: this.state.pokemon.names[clickedCardId],
-        type: this.state.pokemon.types[clickedCardId],
-        height: this.state.pokemon.heights[clickedCardId],
-        weight: this.state.pokemon.weights[clickedCardId],
-        hp: this.state.pokemon.hps[clickedCardId],
-        attack: this.state.pokemon.attacks[clickedCardId],
-        defense: this.state.pokemon.defenses[clickedCardId],
-        speed: this.state.pokemon.speeds[clickedCardId]
-      },
-      modalEnabled: true
-    })
-
-    
+    this.setState({clicked: this.state.pokemonList[clickedCardId-1], modalEnabled: true})
   }
 
 
@@ -99,7 +83,7 @@ class App extends Component {
       <div className="App">
 
 
-        {/* <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} /> */}
+        <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} />
           <layer>
             <Display length={this.state.pokemonList.length} title={this.state.title} handleChange={this.handleChange} />
             <CardList handleClickOnCard={this.handleClickOnCard} pokemonList={filterPokemon()}></CardList>

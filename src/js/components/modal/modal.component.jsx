@@ -6,8 +6,6 @@ export const Modal = ({clickedData, modalEnabled, disableModal}) => {
     let visibility
     let width
 
-
-
     if(modalEnabled) {
         visibility = "visible";
         width = "1000px";
@@ -40,7 +38,7 @@ export const Modal = ({clickedData, modalEnabled, disableModal}) => {
                         width: width
                     }}
                 >
-                    <CardView pokemon={clickedData}/>
+                    {modalEnabled ? <CardView pokemon={clickedData}/> : ''}
                 </div>
             </div>
         </Fragment>
