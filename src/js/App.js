@@ -76,13 +76,11 @@ class App extends Component {
 
 
   render() {
-    const filterPokemon = () => this.state.pokemonList.filter((pokemon, index) => 
+    const filterPokemon = () => this.state.pokemonList.filter( pokemon => 
       pokemon.name.toLowerCase().includes(this.state.searchField.toLowerCase()))
 
     return (
       <div className="App">
-
-
         <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} />
           <layer>
             <Display length={this.state.pokemonList.length} title={this.state.title} handleChange={this.handleChange} />
