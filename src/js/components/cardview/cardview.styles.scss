@@ -42,99 +42,101 @@
         }
     }
 
-    .evolution-tree {
-        display: flex;
-        justify-content: flex-start;
-        position: relative;
-        z-index: 1;
-    }
+
 
     .cardview-content {
         position: relative;
         display: flex;
         padding: 1rem;
-        align-items: center;
-        justify-content: space-around;
+        align-items: flex-start;
+        justify-content: space-between;
         height: 100%;
         width: 100%;
         z-index: 10;
 
 
-        .cardview-pokemon {
+
+        .cardview-img {
+            width: 450px;
+            height: 450px;
+        }
+
+        .left {
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-
-            .cardview-img {
+            .cardview-stats {
+                display: flex;
                 width: 450px;
-                height: 450px;
-            }
-        }
-
-
-        .cardview-stats {
-            display: flex;
-            width: 450px;
-            align-self: flex-start;
-            background: #e0d2d2;
-            border-radius: 10px;
-            overflow: hidden;
-
-            .pokeball {
-                height: 100px;
-                width: 100px;
-            }
-
-            .stat-title {
-                flex: 1;
-                height: inherit;
+                background: #e0d2d2;
+                border-radius: 10px;
                 overflow: hidden;
-
-                p {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
+                
+    
+                .pokeball {
+                    height: 100px;
+                    width: 100px;
+                }
+    
+                .stat-title {
+                    flex: 1;
+                    height: inherit;
                     overflow: hidden;
-                    color: black;
-                    margin-bottom: .5rem;
-                    background: #a8a8a8;
-                    height: 43.5px;
-                    font-weight: bold;
-
-                    &:last-child {
-                        margin-bottom: 0;
+    
+                    p {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        overflow: hidden;
+                        color: black;
+                        margin-bottom: .5rem;
+                        background: #a8a8a8;
+                        height: 43.5px;
+                        font-weight: bold;
+    
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                        
                     }
+    
+    
                     
                 }
-
-
-                
-            }
-
-            .stat-value {
-                flex: 1;
-                overflow: hidden;
-                
-                p {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
+    
+                .stat-value {
+                    flex: 1;
                     overflow: hidden;
-                    color: black;
-                    margin-bottom: .5rem;
-                    height: 43.5px;
-                    background: #fff;
-                    font-weight: bold;
-
-                    &:last-child {
-                        margin-bottom: 0;
+                    
+                    p {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        overflow: hidden;
+                        color: black;
+                        margin-bottom: .5rem;
+                        height: 43.5px;
+                        background: #fff;
+                        font-weight: bold;
+    
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
                     }
+    
                 }
-
-
+    
             }
 
+            .evolution-tree {
+                display: flex;
+            }
 
         }
+
+
+
     }
 }
