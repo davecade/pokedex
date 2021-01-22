@@ -3,6 +3,7 @@ import './app.styles.scss';
 import { CardList } from './components/card-list/card-list.component';
 import { Display } from './components/display/display.component';
 import { Modal } from './components/modal/modal.component';
+import { evolutionData } from './EVOLUTION_DATA'
 
 class App extends Component {
 
@@ -22,24 +23,25 @@ class App extends Component {
 
     // -- Pokemon Image API: https://pokeres.bastionbot.org/images/pokemon/1.png
     // -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
-    // -- Pokemon Evolution Data API: https://pokeapi.co/api/v2/evolution-chain/1
+    // Pokemon Evolution Data API: https://pokeapi.co/api/v2/evolution-chain/1
 
     const addPokemon = ( async () => {
-      let evolveChain = []
+      // let evolveChain = []
       let pokemonObj;
 
       for(let i=1; i <= 151; i++) {
+        // -- Get data from API's
           let pokePic = fetch(`https://pokeres.bastionbot.org/images/pokemon/${i}.png`)
           let pokeResponse = fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
-          let pokeEvolution = fetch(`https://pokeapi.co/api/v2/evolution-chain/${i}`)    
-          let allData = await Promise.all([pokePic, pokeResponse, pokeEvolution])
-          let allDataJsonConverted = await Promise.all([allData[1].json(), allData[2].json()])
+          // let pokeEvolution = fetch(`https://pokeapi.co/api/v2/evolution-chain/${i}`)    
+          let allData = await Promise.all([pokePic, pokeResponse])
+          let allDataJsonConverted = await Promise.all([allData[1].json()])
           let pokeData = allDataJsonConverted[0]
-          let pokeEvolutionData = allDataJsonConverted[1]
+          // let pokeEvolutionData = allDataJsonConverted[1]
 
-          if(i < 79) {
-            evolveChain.push(pokeEvolutionData.chain)
-          }
+          // if(i < 79) {
+          //   evolveChain.push(pokeEvolutionData.chain)
+          // }
           
           let typeList = []
           for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
@@ -81,7 +83,7 @@ class App extends Component {
       pokemon.name.toLowerCase().includes(this.state.searchField.toLowerCase()))
     return (
       <div className="App">
-        <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} />
+        <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} handleClickOnCard={this.handleClickOnCard} pokemonList={filterPokemon()}/>
           <layer>
             <Display length={this.state.pokemonList.length} title={this.state.title} handleChange={this.handleChange} />
             <CardList handleClickOnCard={this.handleClickOnCard} pokemonList={filterPokemon()}></CardList>

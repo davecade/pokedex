@@ -10,7 +10,7 @@ export const CardList = ({pokemonList, handleClickOnCard}) => {
                 <div className="card-list-container">
                     {
                         pokemonList.map((pokemon, index) => (
-                            <Card key={index} handleClickOnCard={handleClickOnCard} pokemon={pokemon}/>
+                            <Card key={index} handleClickOnCard={handleClickOnCard} pokemon={pokemon} evolveInfo={false}/>
                         ))
                     }
                 </div>

@@ -42,6 +42,13 @@
         }
     }
 
+    .evolution-tree {
+        display: flex;
+        justify-content: flex-start;
+        position: relative;
+        z-index: 1;
+    }
+
     .cardview-content {
         position: relative;
         display: flex;
@@ -52,11 +59,18 @@
         width: 100%;
         z-index: 10;
 
-        .cardview-img {
-            width: 450px;
-            height: 450px;
 
+        .cardview-pokemon {
+            display: flex;
+            flex-direction: column;
+
+
+            .cardview-img {
+                width: 450px;
+                height: 450px;
+            }
         }
+
 
         .cardview-stats {
             display: flex;
