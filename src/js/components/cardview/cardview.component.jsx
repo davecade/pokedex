@@ -5,13 +5,7 @@ import Card from '../card/card.component'
 
 const findEvolutionTree = (pokemonId) => {
     for (let tree of evolutionData) {
-        if(tree.includes(pokemonId)) {
-            if(tree.length===1) {
-                return []
-            } else {
-                return tree
-            }
-        }
+        if(tree.includes(pokemonId)) return tree;
     }
 }
 
@@ -23,20 +17,11 @@ export const CardView = ({pokemon, handleClickOnCard, pokemonList}) => {
     return (
         <div className="cardview">
             <div className="name-container">
-               
                 <h1 className="cardview-name">{pokemon.name}</h1>
             </div> 
             
             <div className="cardview-content">
                 <div className="left">
-                    <div className="evolution-tree">
-                        {
-                            evolveTree.map(id => {
-                                return <Card handleClickOnCard={handleClickOnCard} pokemon={pokemonList[id-1]} evolveInfo={true}/>
-                            })
-                            
-                        }
-                    </div>
                     <div className="cardview-stats">
                         <div className="stat-title">
                             <p>TYPE</p>
@@ -54,6 +39,15 @@ export const CardView = ({pokemon, handleClickOnCard, pokemonList}) => {
                             <p>{pokemon.height/10} m</p>
                             <p>{pokemon.weight/10} kg</p>
                         </div>
+                    </div>
+                    
+                    <h1>Evolution Tree</h1>
+                    <div className="evolution-tree">
+                        {
+                            evolveTree.map(id => {
+                                return <Card handleClickOnCard={handleClickOnCard} pokemon={pokemonList[id-1]} evolveInfo={true}/>
+                            })
+                        }
                     </div>
                 </div>
 
