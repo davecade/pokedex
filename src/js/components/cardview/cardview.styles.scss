@@ -131,13 +131,22 @@
     
             }
 
-            .evolution-tree-title {
-                color: #e0d2d2;
-                padding: 0 1rem;
-                width: 85%;
-                border-bottom: 2px solid black;
-                background: black;
-                border-radius: 5px;
+            .evolution-title-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1;
+                width: 100%;
+
+                .evolution-tree-title {
+                    color: #e0d2d2;
+                    padding: 0 1rem;
+                    width: 85%;
+                    border-bottom: 2px solid black;
+                    background: black;
+                    border-radius: 5px;
+        
+                }
             }
 
             .evolution-tree {
