@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import './cardview.styles.scss'
-import { evolutionData } from '../../EVOLUTION_DATA';
+import { evolutionData } from '../../data/EVOLUTION_DATA';
 import Card from '../card/card.component'
 
 const findEvolutionTree = (pokemonId) => {
@@ -12,7 +12,6 @@ const findEvolutionTree = (pokemonId) => {
 export const CardView = ({pokemon, handleClickOnCard, pokemonList}) => {
     
     let evolveTree = (findEvolutionTree(pokemon.id) ? findEvolutionTree(pokemon.id): [])
-
 
     return (
         <div className="cardview">
@@ -45,7 +44,15 @@ export const CardView = ({pokemon, handleClickOnCard, pokemonList}) => {
                     <div className="evolution-tree">
                         {
                             evolveTree.map(id => {
-                                return <Card handleClickOnCard={handleClickOnCard} pokemon={pokemonList[id-1]} evolveInfo={true}/>
+                                let borderColor;
+
+                                if(pokemon.id === (id)) {
+                                    borderColor = "#ffcb05"
+                                } else {
+                                    borderColor = "black"
+                                }
+
+                                return <Card handleClickOnCard={handleClickOnCard} pokemon={pokemonList[id-1]} borderColor={borderColor} evolveInfo={true}/>
                             })
                         }
                     </div>
