@@ -40,7 +40,7 @@ export const CardView = ({pokemon, handleClickOnCard, pokemonList}) => {
                         </div>
                     </div>
                     
-                    <h1>Evolution Tree</h1>
+                    <h2 className="evolution-tree-title">Evolution</h2>
                     <div className="evolution-tree">
                         {
                             evolveTree.map(id => {
