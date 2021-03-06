@@ -68,7 +68,7 @@ class App extends Component {
 
   
   render() {
-
+    
     const filterPokemon = () => this.state.pokemonList.filter( pokemon => 
       pokemon.name.toLowerCase().includes(this.state.searchField.toLowerCase()))
     return (
