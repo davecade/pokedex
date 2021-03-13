@@ -49,7 +49,7 @@ export const CardView = ({pokemon, handleClickOnCard, pokemonList}) => {
                                 let borderColor;
 
                                 if(pokemon.id === (id)) {
-                                    borderColor = "#ffcb05"
+                                    borderColor = "gold"
                                 } else {
                                     borderColor = "black"
                                 }
