@@ -1,7 +1,11 @@
 import React from 'react'
 import './type-selector.styles.scss'
 
-export const TypeSelector = () => {
+export const TypeSelector = ({pokemonList}) => {
+
+    //-- Checking the data
+    console.log("radio sectio: ", pokemonList)
+
     return(
         <div class="typeSelector">
             <input type="radio" class="radio" id="Fire" name="type" value="Fire" />

@@ -75,7 +75,7 @@ class App extends Component {
       <div className="App">
         <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} handleClickOnCard={this.handleClickOnCard} pokemonList={this.state.pokemonList}/>
           <div>
-            <Navbar length={this.state.pokemonList.length} title={this.state.title} handleChange={this.handleChange} />
+            <Navbar pokemonList={filterPokemon()} length={this.state.pokemonList.length} title={this.state.title} handleChange={this.handleChange} />
             <CardList handleClickOnCard={this.handleClickOnCard} pokemonList={filterPokemon()}></CardList>
           </div>
       </div>
