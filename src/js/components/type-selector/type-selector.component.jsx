@@ -4,6 +4,7 @@ import './type-selector.styles.scss'
 export const TypeSelector = ({pokemonList}) => {
 
     //-- Checking the data
+    // -- tHE POKEMON LIST should be the filtered data from search
     console.log("radio sectio: ", pokemonList)
 
     return(
