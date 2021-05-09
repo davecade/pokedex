@@ -4,6 +4,7 @@ import { CardList } from './components/card-list/card-list.component';
 import { Navbar } from './components/navbar/navbar.component';
 import { Modal } from './components/modal/modal.component';
 
+// -- Beginning of redux implementation
 class App extends Component {
 
   constructor(props) {
