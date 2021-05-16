@@ -5,6 +5,7 @@ import { Navbar } from './components/navbar/navbar.component';
 import { Modal } from './components/modal/modal.component';
 import { connect } from 'react-redux'
 import { addNewPokemon } from './redux/pokemon/pokemon.actions'
+import { searchPokemon } from './redux/search/search.actions'
 
 
 // -- Beginning of redux implementation
@@ -15,7 +16,6 @@ class App extends Component {
 
     this.state = {
       title: "Dave's Pokedex",
-      searchField: '',
       clicked: {type: []},
       modalEnabled: false
     }
@@ -60,7 +60,14 @@ class App extends Component {
 
   }
 
-  handleChange = (e) => this.setState({searchField: e.target.value})
+  handleChange = (e) => {
+    const { searchPokemon } = this.props
+    searchPokemon(e.target.value)
+  }
+  
+  
+  
+  
 
   disableModal = () => this.setState({modalEnabled: false})
 
@@ -74,11 +81,11 @@ class App extends Component {
   
   render() {
 
-    const { pokemonList } = this.props
+    const { pokemonList, searchField } = this.props
     console.log("THE LIST", pokemonList)
     
     const filterPokemon = () => pokemonList.filter( pokemon => 
-      pokemon.name.toLowerCase().includes(this.state.searchField.toLowerCase()))
+      pokemon.name.toLowerCase().includes(searchField.toLowerCase()))
     return (
       <div className="App">
         <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} handleClickOnCard={this.handleClickOnCard} pokemonList={pokemonList}/>
@@ -92,11 +99,13 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  pokemonList: state.pokemon.pokemonList
+  pokemonList: state.pokemon.pokemonList,
+  searchField: state.search.searchField
 })
 
 const mapDispatchToProps = dispatch => ({
-  addNewPokemon: pokemon => dispatch(addNewPokemon(pokemon))
+  addNewPokemon: pokemon => dispatch(addNewPokemon(pokemon)),
+  searchPokemon: userInput => dispatch(searchPokemon(userInput))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
