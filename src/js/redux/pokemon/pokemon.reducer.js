@@ -1,15 +1,16 @@
 import { PokemonActionTypes } from '../pokemon/pokemon.types'
 
-const INITIL_STATE = {
-    pokemon: null
+const INITIAL_STATE = {
+    pokemonList: []
 }
 
 const pokemonReducer = (state = INITIAL_STATE, action) => {
+    console.log(action.payload)
     switch(action.type) {
-        case UserActionTypes.ADD_NEW_POKEMON:
+        case PokemonActionTypes.ADD_NEW_POKEMON:
             return {
                 ...state,
-                pokemon: action.payload
+                pokemonList: [...state.pokemonList, action.payload]
             }
         default:
             return state

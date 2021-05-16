@@ -3,6 +3,9 @@ import './app.styles.scss';
 import { CardList } from './components/card-list/card-list.component';
 import { Navbar } from './components/navbar/navbar.component';
 import { Modal } from './components/modal/modal.component';
+import { connect } from 'react-redux'
+import { addNewPokemon } from './redux/pokemon/pokemon.actions'
+
 
 // -- Beginning of redux implementation
 class App extends Component {
@@ -11,7 +14,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      pokemonList: [],
       title: "Dave's Pokedex",
       searchField: '',
       clicked: {type: []},
@@ -25,6 +27,8 @@ class App extends Component {
     // -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
 
     const addPokemon = ( async () => {
+
+      const { addNewPokemon } = this.props
       let pokemonObj;
 
       for(let i=1; i <= 151; i++) {
@@ -49,8 +53,7 @@ class App extends Component {
             defense: pokeData.stats[2].base_stat,
             speed: pokeData.stats[5].base_stat,
           }
-
-          this.setState( {pokemonList: [...this.state.pokemonList, pokemonObj]})
+          addNewPokemon(pokemonObj)
       }
 
     })();
@@ -62,28 +65,38 @@ class App extends Component {
   disableModal = () => this.setState({modalEnabled: false})
 
   handleClickOnCard = (e) => {
+    const { pokemonList } = this.props
     let clickedCard = e.target.closest('.card-content')
     let clickedCardId = clickedCard.getAttribute("id")
-    this.setState({clicked: this.state.pokemonList[clickedCardId-1], modalEnabled: true})
+    this.setState({clicked: pokemonList[clickedCardId-1], modalEnabled: true})
   }
 
   
   render() {
+
+    const { pokemonList } = this.props
+    console.log("THE LIST", pokemonList)
     
-    const filterPokemon = () => this.state.pokemonList.filter( pokemon => 
+    const filterPokemon = () => pokemonList.filter( pokemon => 
       pokemon.name.toLowerCase().includes(this.state.searchField.toLowerCase()))
     return (
       <div className="App">
-        <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} handleClickOnCard={this.handleClickOnCard} pokemonList={this.state.pokemonList}/>
+        <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} handleClickOnCard={this.handleClickOnCard} pokemonList={pokemonList}/>
           <div>
-            <Navbar pokemonList={filterPokemon()} length={this.state.pokemonList.length} title={this.state.title} handleChange={this.handleChange} />
+            <Navbar pokemonList={filterPokemon()} length={pokemonList.length} title={this.state.title} handleChange={this.handleChange} />
             <CardList handleClickOnCard={this.handleClickOnCard} pokemonList={filterPokemon()}></CardList>
           </div>
       </div>
     );
   }
-
-
 }
 
-export default App;
+const mapStateToProps = state => ({
+  pokemonList: state.pokemon.pokemonList
+})
+
+const mapDispatchToProps = dispatch => ({
+  addNewPokemon: pokemon => dispatch(addNewPokemon(pokemon))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
