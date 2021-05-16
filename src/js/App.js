@@ -6,6 +6,7 @@ import { Modal } from './components/modal/modal.component';
 import { connect } from 'react-redux'
 import { addNewPokemon } from './redux/pokemon/pokemon.actions'
 import { searchPokemon } from './redux/search/search.actions'
+import { enableModal, disableModal } from './redux/modal/modal.actions'
 
 
 // -- Beginning of redux implementation
@@ -16,8 +17,7 @@ class App extends Component {
 
     this.state = {
       title: "Dave's Pokedex",
-      clicked: {type: []},
-      modalEnabled: false
+      clicked: {type: []}
     }
   }
 
@@ -65,30 +65,29 @@ class App extends Component {
     searchPokemon(e.target.value)
   }
   
-  
-  
-  
-
-  disableModal = () => this.setState({modalEnabled: false})
+  disableModal = () => {
+    const { disableModal } = this.props
+    disableModal()
+  }
 
   handleClickOnCard = (e) => {
-    const { pokemonList } = this.props
+    const { pokemonList, enableModal } = this.props
     let clickedCard = e.target.closest('.card-content')
     let clickedCardId = clickedCard.getAttribute("id")
-    this.setState({clicked: pokemonList[clickedCardId-1], modalEnabled: true})
+    this.setState({clicked: pokemonList[clickedCardId-1]})
+    enableModal()
   }
 
   
   render() {
 
-    const { pokemonList, searchField } = this.props
-    console.log("THE LIST", pokemonList)
+    const { pokemonList, searchField, modalEnabled } = this.props
     
     const filterPokemon = () => pokemonList.filter( pokemon => 
       pokemon.name.toLowerCase().includes(searchField.toLowerCase()))
     return (
       <div className="App">
-        <Modal clickedData={this.state.clicked} modalEnabled={this.state.modalEnabled} disableModal={this.disableModal} handleClickOnCard={this.handleClickOnCard} pokemonList={pokemonList}/>
+        <Modal clickedData={this.state.clicked} modalEnabled={modalEnabled} disableModal={this.disableModal} handleClickOnCard={this.handleClickOnCard} pokemonList={pokemonList}/>
           <div>
             <Navbar pokemonList={filterPokemon()} length={pokemonList.length} title={this.state.title} handleChange={this.handleChange} />
             <CardList handleClickOnCard={this.handleClickOnCard} pokemonList={filterPokemon()}></CardList>
@@ -100,12 +99,15 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   pokemonList: state.pokemon.pokemonList,
-  searchField: state.search.searchField
+  searchField: state.search.searchField,
+  modalEnabled: state.modal.modalEnabled
 })
 
 const mapDispatchToProps = dispatch => ({
   addNewPokemon: pokemon => dispatch(addNewPokemon(pokemon)),
-  searchPokemon: userInput => dispatch(searchPokemon(userInput))
+  searchPokemon: userInput => dispatch(searchPokemon(userInput)),
+  enableModal: () => dispatch(enableModal()),
+  disableModal: () => dispatch(disableModal())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
