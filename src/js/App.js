@@ -1,6 +1,6 @@
 import {Component } from 'react';
 import './app.styles.scss';
-import { CardList } from './components/card-list/card-list.component';
+import CardList from './components/card-list/card-list.component';
 import { Navbar } from './components/navbar/navbar.component';
 import { Modal } from './components/modal/modal.component';
 import { connect } from 'react-redux'
@@ -16,7 +16,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      title: "Dave's Pokedex",
       clicked: {type: []}
     }
   }
@@ -26,7 +25,7 @@ class App extends Component {
     // -- Pokemon Image API: https://pokeres.bastionbot.org/images/pokemon/1.png
     // -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
 
-    const addPokemon = ( async () => {
+    (async () => {
 
       const { addNewPokemon } = this.props
       let pokemonObj;
@@ -81,16 +80,14 @@ class App extends Component {
   
   render() {
 
-    const { pokemonList, searchField, modalEnabled } = this.props
-    
-    const filterPokemon = () => pokemonList.filter( pokemon => 
-      pokemon.name.toLowerCase().includes(searchField.toLowerCase()))
+    const { pokemonList, modalEnabled } = this.props
+    // -- handleClickOnCard={this.handleClickOnCard}
     return (
       <div className="App">
         <Modal clickedData={this.state.clicked} modalEnabled={modalEnabled} disableModal={this.disableModal} handleClickOnCard={this.handleClickOnCard} pokemonList={pokemonList}/>
           <div>
-            <Navbar pokemonList={filterPokemon()} length={pokemonList.length} title={this.state.title} handleChange={this.handleChange} />
-            <CardList handleClickOnCard={this.handleClickOnCard} pokemonList={filterPokemon()}></CardList>
+            <Navbar length={pokemonList.length} handleChange={this.handleChange} />
+            <CardList></CardList>
           </div>
       </div>
     );
@@ -99,7 +96,6 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   pokemonList: state.pokemon.pokemonList,
-  searchField: state.search.searchField,
   modalEnabled: state.modal.modalEnabled
 })
 

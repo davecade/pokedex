@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './card.styles.scss';
 
 export const Card = ({pokemon, handleClickOnCard, evolveInfo, borderColor}) => {
