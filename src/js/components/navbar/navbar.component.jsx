@@ -5,7 +5,7 @@ import './navbar.styles.scss'
 import { connect } from 'react-redux';
 import SearchBar from '../search-bar/search-bar.component';
 
-const Navbar = ({pokemonList}) => {
+const Navbar = ({ pokemonList }) => {
 
   let length = pokemonList.length
 
