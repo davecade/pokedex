@@ -2,6 +2,7 @@ import React from 'react';
 import './cardview.styles.scss'
 import { evolutionData } from '../../data/EVOLUTION_DATA';
 import Card from '../card/card.component'
+import { connect } from 'react-redux';
 
 const findEvolutionTree = (pokemonId) => {
     for (let tree of evolutionData) {
@@ -9,8 +10,9 @@ const findEvolutionTree = (pokemonId) => {
     }
 }
 
-export const CardView = ({pokemon, pokemonList}) => {
-    
+const CardView = ({selected, pokemonList}) => {
+
+    let pokemon = selected
     let evolveTree = (findEvolutionTree(pokemon.id) ? findEvolutionTree(pokemon.id): [])
 
     return (
@@ -71,3 +73,10 @@ export const CardView = ({pokemon, pokemonList}) => {
         </div>
     )
 }
+
+const mapStateToProps = state => ({
+    pokemonList: state.pokemon.pokemonList,
+    selected: state.pokemon.selected
+})
+
+export default connect(mapStateToProps)(CardView)

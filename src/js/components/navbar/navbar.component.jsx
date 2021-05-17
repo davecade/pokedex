@@ -1,10 +1,14 @@
 import React, { Fragment } from 'react';
-import { SearchBar } from '../search-bar/search-bar.component'
 import { LoadingBar } from '../loading-bar/loading-bar.component'
 import { TypeSelector } from '../type-selector/type-selector.component'
 import './navbar.styles.scss'
+import { connect } from 'react-redux';
+import SearchBar from '../search-bar/search-bar.component';
 
-export const Navbar = ({length, handleChange}) => {
+const Navbar = ({pokemonList}) => {
+
+  let length = pokemonList.length
+
   if(length < 151) {
       return (
         <div className="navbar">
@@ -16,10 +20,16 @@ export const Navbar = ({length, handleChange}) => {
         <Fragment>
             <div className="navbar">
                 <h1 className="title">Dave's Pokedex</h1>
-                <SearchBar handleChange={handleChange} />
+                <SearchBar />
                 <TypeSelector />
             </div>
         </Fragment>
       )
     }
 }
+
+const mapStateToProps = state => ({
+  pokemonList: state.pokemon.pokemonList
+})
+
+export default connect(mapStateToProps)(Navbar)

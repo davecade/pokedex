@@ -1,15 +1,14 @@
-import {Component } from 'react';
+import { Component } from 'react';
 import './app.styles.scss';
 import CardList from './components/card-list/card-list.component';
-import { Navbar } from './components/navbar/navbar.component';
+import Navbar from './components/navbar/navbar.component';
 import { Modal } from './components/modal/modal.component';
 import { connect } from 'react-redux'
 import { addNewPokemon, selectPokemon } from './redux/pokemon/pokemon.actions'
-import { searchPokemon } from './redux/search/search.actions'
 import { disableModal } from './redux/modal/modal.actions'
 
 
-// -- Beginning of redux implementation
+
 class App extends Component {
 
   componentDidMount() {
@@ -50,11 +49,6 @@ class App extends Component {
     })();
 
   }
-
-  handleChange = (e) => {
-    const { searchPokemon } = this.props
-    searchPokemon(e.target.value)
-  }
   
   disableModal = () => {
     const { disableModal } = this.props
@@ -64,14 +58,14 @@ class App extends Component {
   
   render() {
 
-    const { pokemonList, modalEnabled, selected } = this.props
+    const { modalEnabled } = this.props
     
     return (
       <div className="App">
-        <Modal clickedData={selected} modalEnabled={modalEnabled} disableModal={this.disableModal} pokemonList={pokemonList}/>
+        <Modal modalEnabled={modalEnabled} disableModal={this.disableModal}/>
           <div>
-            <Navbar length={pokemonList.length} handleChange={this.handleChange} />
-            <CardList></CardList>
+            <Navbar/>
+            <CardList/>
           </div>
       </div>
     );
@@ -86,7 +80,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addNewPokemon: pokemon => dispatch(addNewPokemon(pokemon)),
-  searchPokemon: userInput => dispatch(searchPokemon(userInput)),
   selectPokemon: pokemon => dispatch(selectPokemon(pokemon)),
   disableModal: () => dispatch(disableModal())
 })

@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import './modal.styles.scss';
-import { CardView } from '../cardview/cardview.component'
+import CardView from '../cardview/cardview.component'
 
-export const Modal = ({clickedData, modalEnabled, disableModal, pokemonList}) => {
+export const Modal = ({modalEnabled, disableModal}) => {
     let visibility
     let width
 
@@ -38,7 +38,7 @@ export const Modal = ({clickedData, modalEnabled, disableModal, pokemonList}) =>
                         width: width
                     }}
                 >
-                    <CardView pokemon={clickedData} pokemonList={pokemonList}/>
+                    <CardView/>
                 </div>
             </div>
         </Fragment>

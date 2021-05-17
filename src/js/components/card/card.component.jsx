@@ -7,7 +7,6 @@ import { enableModal } from '../../redux/modal/modal.actions'
 const Card = ({pokemon, evolveInfo, borderColor, enableModal, selectPokemon, pokemonList}) => {
 
     const handleClickOnCard = (e) => {
-
         let clickedCard = e.target.closest('.card-content')
         let clickedCardId = clickedCard.getAttribute("id")
         selectPokemon(pokemonList[clickedCardId-1])
