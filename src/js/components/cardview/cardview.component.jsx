@@ -9,7 +9,7 @@ const findEvolutionTree = (pokemonId) => {
     }
 }
 
-export const CardView = ({pokemon, handleClickOnCard, pokemonList}) => {
+export const CardView = ({pokemon, pokemonList}) => {
     
     let evolveTree = (findEvolutionTree(pokemon.id) ? findEvolutionTree(pokemon.id): [])
 
@@ -54,7 +54,7 @@ export const CardView = ({pokemon, handleClickOnCard, pokemonList}) => {
                                     borderColor = "black"
                                 }
 
-                                return <Card handleClickOnCard={handleClickOnCard} pokemon={pokemonList[id-1]} borderColor={borderColor} evolveInfo={true}/>
+                                return <Card pokemon={pokemonList[id-1]} borderColor={borderColor} evolveInfo={true}/>
                             })
                         }
                     </div>

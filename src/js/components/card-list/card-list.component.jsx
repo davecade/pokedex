@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
-import { Card } from '../card/card.component'
+import Card from '../card/card.component'
 import './card-list.styles.scss'
 import { connect } from 'react-redux'
 
-const CardList = ({handleClickOnCard, pokemonList, searchField}) => {
+const CardList = ({pokemonList, searchField}) => {
 
     const filterPokemon = pokemonList.filter(pokemon => 
         pokemon.name.toLowerCase().includes(searchField.toLowerCase()))
@@ -14,7 +14,7 @@ const CardList = ({handleClickOnCard, pokemonList, searchField}) => {
                 <div className="card-list-container">
                     {
                         filterPokemon.map((pokemon, index) => (
-                            <Card key={index} handleClickOnCard={handleClickOnCard} pokemon={pokemon} evolveInfo={false}/>
+                            <Card key={index} pokemon={pokemon} evolveInfo={false}/>
                         ))
                     }
                 </div>

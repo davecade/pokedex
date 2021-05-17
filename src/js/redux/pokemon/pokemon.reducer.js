@@ -6,7 +6,6 @@ const INITIAL_STATE = {
 }
 
 const pokemonReducer = (state = INITIAL_STATE, action) => {
-    console.log("Arrived reduce")
     switch(action.type) {
         case PokemonActionTypes.ADD_NEW_POKEMON:
             return {
