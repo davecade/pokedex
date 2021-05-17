@@ -6,7 +6,8 @@ import { connect } from 'react-redux'
 const SearchBar = ({ searchPokemon }) => {
 
     const handleChange = (e) => {
-        searchPokemon(e.target.value)
+        let userInput = e.target.value
+        searchPokemon(userInput)
     }
 
     return (
