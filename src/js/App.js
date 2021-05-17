@@ -4,21 +4,13 @@ import CardList from './components/card-list/card-list.component';
 import { Navbar } from './components/navbar/navbar.component';
 import { Modal } from './components/modal/modal.component';
 import { connect } from 'react-redux'
-import { addNewPokemon } from './redux/pokemon/pokemon.actions'
+import { addNewPokemon, selectPokemon } from './redux/pokemon/pokemon.actions'
 import { searchPokemon } from './redux/search/search.actions'
 import { enableModal, disableModal } from './redux/modal/modal.actions'
 
 
 // -- Beginning of redux implementation
 class App extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      clicked: {type: []}
-    }
-  }
 
   componentDidMount() {
 
@@ -70,24 +62,26 @@ class App extends Component {
   }
 
   handleClickOnCard = (e) => {
-    const { pokemonList, enableModal } = this.props
+    console.log("CLICKED JUST NOW!!")
+    const { pokemonList, enableModal, selectPokemon } = this.props
     let clickedCard = e.target.closest('.card-content')
     let clickedCardId = clickedCard.getAttribute("id")
-    this.setState({clicked: pokemonList[clickedCardId-1]})
+    selectPokemon(pokemonList[clickedCardId-1])
     enableModal()
+    
   }
 
   
   render() {
 
-    const { pokemonList, modalEnabled } = this.props
-    // -- handleClickOnCard={this.handleClickOnCard}
+    const { pokemonList, modalEnabled, selected } = this.props
+    
     return (
       <div className="App">
-        <Modal clickedData={this.state.clicked} modalEnabled={modalEnabled} disableModal={this.disableModal} handleClickOnCard={this.handleClickOnCard} pokemonList={pokemonList}/>
+        <Modal clickedData={selected} modalEnabled={modalEnabled} disableModal={this.disableModal} handleClickOnCard={this.handleClickOnCard} pokemonList={pokemonList}/>
           <div>
             <Navbar length={pokemonList.length} handleChange={this.handleChange} />
-            <CardList></CardList>
+            <CardList handleClickOnCard={this.handleClickOnCard}></CardList>
           </div>
       </div>
     );
@@ -96,12 +90,14 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   pokemonList: state.pokemon.pokemonList,
-  modalEnabled: state.modal.modalEnabled
+  modalEnabled: state.modal.modalEnabled,
+  selected: state.pokemon.selected
 })
 
 const mapDispatchToProps = dispatch => ({
   addNewPokemon: pokemon => dispatch(addNewPokemon(pokemon)),
   searchPokemon: userInput => dispatch(searchPokemon(userInput)),
+  selectPokemon: pokemon => dispatch(selectPokemon(pokemon)),
   enableModal: () => dispatch(enableModal()),
   disableModal: () => dispatch(disableModal())
 })

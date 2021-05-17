@@ -3,7 +3,7 @@ import { Card } from '../card/card.component'
 import './card-list.styles.scss'
 import { connect } from 'react-redux'
 
-const CardList = ({ handleClickOnCard, pokemonList, searchField }) => {
+const CardList = ({handleClickOnCard, pokemonList, searchField}) => {
 
     const filterPokemon = pokemonList.filter(pokemon => 
         pokemon.name.toLowerCase().includes(searchField.toLowerCase()))
@@ -21,7 +21,6 @@ const CardList = ({ handleClickOnCard, pokemonList, searchField }) => {
             </div>
         </Fragment>
     )
-
 }
 
 const mapStateToProps = state => ({

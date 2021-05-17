@@ -2,7 +2,7 @@ import React from 'react';
 import './card.styles.scss';
 
 export const Card = ({pokemon, handleClickOnCard, evolveInfo, borderColor}) => {
-
+    
     return (
         <div
             className={`card-content ${evolveInfo ? 'evolveInfo' : 'mainPage'}`}
