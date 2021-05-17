@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
 import './modal.styles.scss';
 import CardView from '../cardview/cardview.component'
+import { connect } from 'react-redux';
+import { disableModal } from '../../redux/modal/modal.actions'
 
-export const Modal = ({modalEnabled, disableModal}) => {
+const Modal = ({modalEnabled, disableModal}) => {
     let visibility
     let width
 
@@ -44,3 +46,13 @@ export const Modal = ({modalEnabled, disableModal}) => {
         </Fragment>
     )
 }
+
+const mapStateToProps = state => ({
+    modalEnabled: state.modal.modalEnabled
+})
+
+const mapDispatchToProps = dispatch => ({
+    disableModal: () => dispatch(disableModal())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal)

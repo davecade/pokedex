@@ -2,10 +2,9 @@ import { Component } from 'react';
 import './app.styles.scss';
 import CardList from './components/card-list/card-list.component';
 import Navbar from './components/navbar/navbar.component';
-import { Modal } from './components/modal/modal.component';
+import Modal from './components/modal/modal.component';
 import { connect } from 'react-redux'
-import { addNewPokemon, selectPokemon } from './redux/pokemon/pokemon.actions'
-import { disableModal } from './redux/modal/modal.actions'
+import { addNewPokemon } from './redux/pokemon/pokemon.actions'
 
 
 
@@ -49,20 +48,11 @@ class App extends Component {
     })();
 
   }
-  
-  disableModal = () => {
-    const { disableModal } = this.props
-    disableModal()
-  }
 
-  
   render() {
-
-    const { modalEnabled } = this.props
-    
     return (
       <div className="App">
-        <Modal modalEnabled={modalEnabled} disableModal={this.disableModal}/>
+        <Modal/>
           <div>
             <Navbar/>
             <CardList/>
@@ -72,16 +62,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  pokemonList: state.pokemon.pokemonList,
-  modalEnabled: state.modal.modalEnabled,
-  selected: state.pokemon.selected
-})
-
 const mapDispatchToProps = dispatch => ({
   addNewPokemon: pokemon => dispatch(addNewPokemon(pokemon)),
-  selectPokemon: pokemon => dispatch(selectPokemon(pokemon)),
-  disableModal: () => dispatch(disableModal())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
