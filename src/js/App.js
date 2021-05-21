@@ -49,6 +49,7 @@ class App extends Component {
 
   }
 
+  // -- Redux for state management - No props needs to be sent
   render() {
     return (
       <div className="App">

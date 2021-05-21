@@ -35,4 +35,4 @@ const mapDispatchToProps = dispatch => ({
     enableModal: () => dispatch(enableModal())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Card); 
+export default connect(mapStateToProps, mapDispatchToProps)(Card);
