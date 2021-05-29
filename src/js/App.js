@@ -25,8 +25,8 @@ class App extends Component {
           let pokePic = fetch(`https://pokeres.bastionbot.org/images/pokemon/${i}.png`)
           let pokeResponse = fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)  
           let allData = await Promise.all([pokePic, pokeResponse])
-          let allDataJsonConverted = await Promise.all([allData[1].json()])
-          let pokeData = allDataJsonConverted[0]
+          let allDataJsonConverted = await allData[1].json()
+          let pokeData = allDataJsonConverted
           let typeList = []
           for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
 
