@@ -49,14 +49,17 @@ const CardView = ({selected, pokemonList}) => {
                         {
                             evolveTree.map(id => {
                                 let borderColor;
+                                let backgroundColor
 
                                 if(pokemon.id === (id)) {
-                                    borderColor = "gold"
+                                    borderColor = "darkblue"
+                                    backgroundColor = "orange"
                                 } else {
                                     borderColor = "black"
+                                    backgroundColor = "black"
                                 }
 
-                                return <Card pokemon={pokemonList[id-1]} borderColor={borderColor} evolveInfo={true}/>
+                                return <Card pokemon={pokemonList[id-1]} backgroundColor={backgroundColor} borderColor={borderColor} evolveInfo={true}/>
                             })
                         }
                     </div>

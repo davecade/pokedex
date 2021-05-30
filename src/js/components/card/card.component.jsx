@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { selectPokemon } from '../../redux/pokemon/pokemon.actions'
 import { enableModal } from '../../redux/modal/modal.actions'
 
-const Card = ({pokemon, evolveInfo, borderColor, enableModal, selectPokemon, pokemonList}) => {
+const Card = ({pokemon, evolveInfo, backgroundColor, borderColor, enableModal, selectPokemon, pokemonList}) => {
 
     const handleClickOnCard = (e) => {
         let clickedCard = e.target.closest('.card-content')
@@ -18,7 +18,7 @@ const Card = ({pokemon, evolveInfo, borderColor, enableModal, selectPokemon, pok
         <div
             className={`card-content ${evolveInfo ? 'evolveInfo' : 'mainPage'}`}
             id={pokemon.id} onClick={handleClickOnCard}
-            style={{border: `4px solid ${borderColor}`}}>
+            style={{border: `4px solid ${borderColor}`, background: `${backgroundColor}`}}>
 
             {evolveInfo ? '' : <h2>{pokemon.name}</h2>}
             <img src={pokemon.image} alt=""/>
