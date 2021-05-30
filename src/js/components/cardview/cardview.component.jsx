@@ -52,8 +52,8 @@ const CardView = ({selected, pokemonList}) => {
                                 let backgroundColor
 
                                 if(pokemon.id === (id)) {
-                                    borderColor = "darkblue"
-                                    backgroundColor = "orange"
+                                    borderColor = "#0a247a"
+                                    backgroundColor = "#ffcb05"
                                 } else {
                                     borderColor = "black"
                                     backgroundColor = "black"
