@@ -20,8 +20,11 @@ const Navbar = ({ pokemonList }) => {
         <Fragment>
             <div className="navbar">
                 <h1 className="title">Dave's Pokedex</h1>
-                <SearchBar />
-                <TypeSelector />
+                <div className="params">
+                  <SearchBar />
+                  <TypeSelector />
+                </div>
+
             </div>
         </Fragment>
       )

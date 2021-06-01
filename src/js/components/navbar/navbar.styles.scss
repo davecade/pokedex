@@ -6,4 +6,9 @@
     background: #22252c;
     border-bottom: 2px solid black;
     padding: .5rem 0;
+
+    .params {
+        display: flex;
+        justify-content: center;
+    }
 }

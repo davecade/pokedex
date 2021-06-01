@@ -19,6 +19,7 @@ class App extends Component {
 
       const { addNewPokemon } = this.props
       let pokemonObj;
+      let allTypes = []
 
       for(let i=1; i <= 151; i++) {
         // -- Get data from API's
@@ -28,7 +29,6 @@ class App extends Component {
           let pokeData = await allData[1].json()
           let typeList = []
           for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
-
           pokemonObj = {
             id: i,
             image: allData[0].url,
@@ -43,6 +43,8 @@ class App extends Component {
           }
           addNewPokemon(pokemonObj)
       }
+
+      console.log(allTypes)
 
     })();
 

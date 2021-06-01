@@ -5,16 +5,20 @@ export const TypeSelector = ({pokemonList}) => {
 
     //-- Checking the data
     // -- tHE POKEMON LIST should be the filtered data from search
-    console.log("radio sectio: ", pokemonList)
+
+    let listOfTypes = ["All Types", "grass", "poison", "fire", "flying", "water", "bug", "normal", "electric", "ground", "fairy", "fighting", "psychic", "rock", "steel", "ice", "ghost", "dragon"]
 
     return(
-        <div class="typeSelector">
-            <input type="radio" class="radio" id="Fire" name="type" value="Fire" />
-            <label for="male" class="label">Fire</label>
-            <input type="radio" class="radio" id="Grass" name="type" value="Grass" />
-            <label for="female" class="label">Grass</label>
-            <input type="radio" class="radio" id="Water" name="type" value="Water" />
-            <label for="other" class="label">Water</label>
+        <div className="typeSelector">
+            <div className="dropdown">
+                <select className="dropbtn">
+                    {
+                        listOfTypes.map(type => {
+                            return <option selected={type === "All Types" ? "selected" : ""} value={type}>{type.toUpperCase()}</option>
+                        })
+                    }
+                </select>
+            </div>
         </div>
     )
 }

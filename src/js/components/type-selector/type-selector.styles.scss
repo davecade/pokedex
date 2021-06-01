@@ -3,13 +3,53 @@
     justify-content: center;
     align-items: center;
 
-    .radio {
-        margin-left: 1rem;
+    /* Style The Dropdown Button */
+    .dropbtn {
+        background-color: #0a247a;
+        color: #ffcb05;
+        padding: 8px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        margin: 1rem 1rem;
+        border-color: 1px solid #ffcb05;
     }
     
-    .label {
-        margin-left: 0.2rem;
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+
+    }
+    
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #ffcb05;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+    
+    /* Links inside the dropdown */
+    .dropdown-content option {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    /* Change color of dropdown links on hover */
+    .dropdown-content option:hover {background-color: #f1f1f1}
+    
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {
+        background-color: #0a247a;
     }
 }
-
-
