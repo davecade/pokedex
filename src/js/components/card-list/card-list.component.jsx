@@ -3,17 +3,22 @@ import Card from '../card/card.component'
 import './card-list.styles.scss'
 import { connect } from 'react-redux'
 
-const CardList = ({pokemonList, searchField}) => {
+const CardList = ({pokemonList, searchField, selectedType}) => {
 
-    const filterPokemon = pokemonList.filter(pokemon => 
+    let filteredPokemon = pokemonList.filter(pokemon => 
         pokemon.name.toLowerCase().includes(searchField.toLowerCase()))
+
+    if(selectedType!=='All Types') {
+        filteredPokemon = filteredPokemon.filter(pokemon =>
+            pokemon.type.includes(selectedType))
+    }
 
     return (
         <Fragment>
             <div className="card-list"> 
                 <div className="card-list-container">
                     {
-                        filterPokemon.map((pokemon, index) => (
+                        filteredPokemon.map((pokemon, index) => (
                             <Card key={index} pokemon={pokemon} evolveInfo={false}/>
                         ))
                     }
@@ -26,6 +31,7 @@ const CardList = ({pokemonList, searchField}) => {
 const mapStateToProps = state => ({
     pokemonList: state.pokemon.pokemonList,
     searchField: state.search.searchField,
+    selectedType: state.search.type
 })
 
 export default connect(mapStateToProps)(CardList);

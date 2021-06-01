@@ -1,7 +1,8 @@
 import { SearchActionTypes } from '../search/search.types'
 
 const INITIAL_STATE = {
-    searchField: ''
+    searchField: '',
+    type: 'All Types'
 }
 
 const searchReducer = (state = INITIAL_STATE, action) => {
@@ -11,6 +12,12 @@ const searchReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 searchField: action.payload
+            }
+
+        case SearchActionTypes.TYPE_SELECTED:
+            return{
+                ...state,
+                type: action.payload
             }
         default:
             return state

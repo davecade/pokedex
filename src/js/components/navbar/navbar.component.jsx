@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { LoadingBar } from '../loading-bar/loading-bar.component'
-import { TypeSelector } from '../type-selector/type-selector.component'
+import TypeSelector from '../type-selector/type-selector.component'
 import './navbar.styles.scss'
 import { connect } from 'react-redux';
 import SearchBar from '../search-bar/search-bar.component';
