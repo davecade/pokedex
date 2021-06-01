@@ -5,9 +5,6 @@ import { updateTypeSelection } from '../../redux/search/search.actions'
 
 const TypeSelector = ({updateTypeSelection}) => {
 
-    //-- Checking the data
-    // -- tHE POKEMON LIST should be the filtered data from search
-
     let listOfTypes = ["All Types", "grass", "poison", "fire", "flying", "water", "bug", "normal", "electric", "ground", "fairy", "fighting", "psychic", "rock", "steel", "ice", "ghost", "dragon"]
 
     const handleChange = (e) => {
