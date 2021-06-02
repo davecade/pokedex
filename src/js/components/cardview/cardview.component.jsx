@@ -53,10 +53,10 @@ const CardView = ({selected, pokemonList}) => {
 
                                 if(pokemon.id === (id)) {
                                     borderColor = "gold"
-                                    backgroundColor = "#282c34"
+                                    backgroundColor = "black"
                                 } else {
-                                    borderColor = "#282c34"
-                                    backgroundColor = "#282c34"
+                                    borderColor = "black"
+                                    backgroundColor = "black"
                                 }
 
                                 return <Card pokemon={pokemonList[id-1]} backgroundColor={backgroundColor} borderColor={borderColor} evolveInfo={true}/>
