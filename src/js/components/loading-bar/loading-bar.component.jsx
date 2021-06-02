@@ -13,7 +13,7 @@ export const LoadingBar = ({length}) => {
 
     return (
         <Fragment>
-            <h1>Loading Pokemon</h1>
+            <h1>Please wait while loading Pokemon</h1>
             <h1>{widthPercent()}%</h1>
             <div className="loading-container">
                 <div className="loading-bar" style={{width: `${widthPercent()}%`}}></div>

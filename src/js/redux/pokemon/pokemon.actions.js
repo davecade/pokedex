@@ -9,3 +9,8 @@ export const selectPokemon = pokemon => ({
     type: PokemonActionTypes.SELECT_POKEMON,
     payload: pokemon
 })
+
+export const setLoading = status => ({
+    type: PokemonActionTypes.SET_LOADING,
+    payload: status
+})

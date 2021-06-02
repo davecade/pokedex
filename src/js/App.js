@@ -4,7 +4,7 @@ import CardList from './components/card-list/card-list.component';
 import Navbar from './components/navbar/navbar.component';
 import Modal from './components/modal/modal.component';
 import { connect } from 'react-redux'
-import { addNewPokemon } from './redux/pokemon/pokemon.actions'
+import { addNewPokemon, setLoading } from './redux/pokemon/pokemon.actions'
 
 
 
@@ -17,9 +17,8 @@ class App extends Component {
 
     (async () => {
 
-      const { addNewPokemon } = this.props
+      const { addNewPokemon, setLoading } = this.props
       let pokemonObj;
-      let allTypes = []
 
       for(let i=1; i <= 151; i++) {
         // -- Get data from API's
@@ -44,7 +43,7 @@ class App extends Component {
           addNewPokemon(pokemonObj)
       }
 
-      console.log(allTypes)
+      setLoading(false)
 
     })();
 
@@ -66,6 +65,8 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => ({
   addNewPokemon: pokemon => dispatch(addNewPokemon(pokemon)),
+  setLoading: status => dispatch(setLoading(status))
+
 })
 
 export default connect(null, mapDispatchToProps)(App);
