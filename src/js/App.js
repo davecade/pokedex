@@ -18,7 +18,7 @@ class App extends Component {
     (async () => {
 
       const { addNewPokemon, setLoading } = this.props
-      let pokemonObj;
+      let pokemonObject;
 
       for(let i=1; i <= 151; i++) {
         // -- Get data from API's
@@ -28,7 +28,7 @@ class App extends Component {
           let pokeData = await allData[1].json()
           let typeList = []
           for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
-          pokemonObj = {
+          pokemonObject = {
             id: i,
             image: allData[0].url,
             name: pokeData.name,
@@ -40,7 +40,7 @@ class App extends Component {
             defense: pokeData.stats[2].base_stat,
             speed: pokeData.stats[5].base_stat,
           }
-          addNewPokemon(pokemonObj)
+          addNewPokemon(pokemonObject)
       }
 
       setLoading(false)

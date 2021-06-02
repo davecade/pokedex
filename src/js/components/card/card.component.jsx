@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { selectPokemon } from '../../redux/pokemon/pokemon.actions'
 import { enableModal } from '../../redux/modal/modal.actions'
 
-const Card = ({loading, pokemon, evolveInfo, backgroundColor, borderColor, enableModal, selectPokemon, pokemonList}) => {
+const Card = ({stillLoading, pokemon, evolveInfo, backgroundColor, borderColor, enableModal, selectPokemon, pokemonList}) => {
 
     const handleClickOnCard = (e) => {
         let clickedCard = e.target.closest('.card-content')
@@ -17,7 +17,7 @@ const Card = ({loading, pokemon, evolveInfo, backgroundColor, borderColor, enabl
     return (
         <div
             className={`card-content ${evolveInfo ? 'evolveInfo' : 'mainPage'}`}
-            id={pokemon.id} onClick={loading ? '' : handleClickOnCard}
+            id={pokemon.id} onClick={stillLoading ? '' : handleClickOnCard}
             style={{border: `5px solid ${borderColor}`, background: `${backgroundColor}`}}>
 
             {evolveInfo ? '' : <h2>{pokemon.name}</h2>}
@@ -28,7 +28,7 @@ const Card = ({loading, pokemon, evolveInfo, backgroundColor, borderColor, enabl
 
 const mapStateToProps = state => ({
     pokemonList: state.pokemon.pokemonList,
-    loading: state.pokemon.loading
+    stillLoading: state.pokemon.loading
 })
 
 const mapDispatchToProps = dispatch => ({
