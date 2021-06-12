@@ -13,7 +13,7 @@ const Card = ({stillLoading, pokemon, evolveInfo, backgroundColor, borderColor, 
         enableModal()
     }
     
-    
+ 
     return (
         <div
             className={`card-content ${evolveInfo ? 'evolveInfo' : 'mainPage'}`}
