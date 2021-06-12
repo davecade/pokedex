@@ -13,11 +13,11 @@ const Card = ({stillLoading, pokemon, evolveInfo, backgroundColor, borderColor, 
         enableModal()
     }
     
- 
+    //--stillLoading ? '' : 
     return (
         <div
             className={`card-content ${evolveInfo ? 'evolveInfo' : 'mainPage'}`}
-            id={pokemon.id} onClick={stillLoading ? '' : handleClickOnCard}
+            id={pokemon.id} onClick={handleClickOnCard}
             style={{border: `5px solid ${borderColor}`, background: `${backgroundColor}`}}>
 
             {evolveInfo ? '' : <h2>{pokemon.name}</h2>}
