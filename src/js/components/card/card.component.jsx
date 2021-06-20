@@ -3,8 +3,11 @@ import './card.styles.scss';
 import { connect } from 'react-redux'
 import { selectPokemon } from '../../redux/pokemon/pokemon.actions'
 import { enableModal } from '../../redux/modal/modal.actions'
+import { Component } from 'react';
+
 
 const Card = ({stillLoading, pokemon, evolveInfo, backgroundColor, borderColor, enableModal, selectPokemon, pokemonList}) => {
+
 
     const handleClickOnCard = (e) => {
         let clickedCard = e.target.closest('.card-content')
@@ -13,7 +16,8 @@ const Card = ({stillLoading, pokemon, evolveInfo, backgroundColor, borderColor, 
         enableModal()
     }
     
-    //--stillLoading ? '' : 
+    //--stillLoading ? '' :  <img src={pokemon.image} alt=""/>  <AsyncImage src={pokemon.image} />
+
     return (
         <div
             className={`card-content ${evolveInfo ? 'evolveInfo' : 'mainPage'}`}

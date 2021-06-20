@@ -13,14 +13,15 @@ const CardList = ({pokemonList, searchField, selectedType}) => {
             pokemon.type.includes(selectedType))
     }
 
+
     return (
         <Fragment>
             <div className="card-list"> 
                 <div className="card-list-container">
                     {
-                        filteredPokemon.map((pokemon, index) => (
-                            <Card key={index} pokemon={pokemon} evolveInfo={false}/>
-                        ))
+                        filteredPokemon.map((pokemon, index) => {
+                            return <Card key={index} pokemon={pokemon} evolveInfo={false}/>
+                        })
                     }
                 </div>
             </div>
