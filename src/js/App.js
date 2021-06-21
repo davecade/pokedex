@@ -39,12 +39,12 @@ class App extends Component {
           let pokeDataStats = await pokeData[0].json()
           let pokeDataDescription = await pokeData[1].json()
 
-          // -- at types of each pokemon to array
+          // -- add types of each pokemon to an array
           let typeList = []
           for(let i=0; i<pokeDataStats.types.length; i++) typeList.push(pokeDataStats.types[i].type.name)
           
-          // -- Get description parts and remove unwanted arrow text,
-          // -- then combine description
+          // -- Get description parts and remove unwanted arrow text
+          // -- Then combine description parts into one
           let desciptionPart1 = removeUnwantedArrowText(pokeDataDescription.flavor_text_entries[10].flavor_text.split("")).join("")
           let desciptionPart2 = removeUnwantedArrowText(pokeDataDescription.flavor_text_entries[11].flavor_text.split("")).join("")
           let description = `${desciptionPart1} ${desciptionPart2}`
@@ -91,7 +91,6 @@ class App extends Component {
 const mapDispatchToProps = dispatch => ({
   addNewPokemon: pokemon => dispatch(addNewPokemon(pokemon)),
   setLoading: status => dispatch(setLoading(status))
-
 })
 
 export default connect(null, mapDispatchToProps)(App);
