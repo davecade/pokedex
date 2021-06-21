@@ -17,10 +17,10 @@ class App extends Component {
 
     (async () => {
 
-      const formatText = text => {
+      const removeUnwantedArrowText = text => {
         for(let i=0; i<text.length ;i++) {
-          if(text[i]==='.' && text[i+1]!==' ') {
-            text[i+1] = " "
+          if(text[i]==='') {
+            text[i] = " "
           }
         }
         return text
@@ -41,8 +41,8 @@ class App extends Component {
           let typeList = []
           for(let i=0; i<pokeDataStats.types.length; i++) typeList.push(pokeDataStats.types[i].type.name)
           
-          let desciptionPart1 = formatText(pokeDataDesc.flavor_text_entries[10].flavor_text.split("")).join("")
-          let desciptionPart2 = formatText(pokeDataDesc.flavor_text_entries[11].flavor_text.split("")).join("")
+          let desciptionPart1 = removeUnwantedArrowText(pokeDataDesc.flavor_text_entries[10].flavor_text.split("")).join("")
+          let desciptionPart2 = removeUnwantedArrowText(pokeDataDesc.flavor_text_entries[11].flavor_text.split("")).join("")
           let description = `${desciptionPart1} ${desciptionPart2}`
 
           pokemonObject = {
