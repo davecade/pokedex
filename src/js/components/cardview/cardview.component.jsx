@@ -23,6 +23,7 @@ const CardView = ({selected, pokemonList}) => {
             
             <div className="cardview-content">
                 <div className="left">
+
                     <div className="cardview-stats">
                         <div className="stat-title">
                             <p>TYPE</p>
@@ -37,31 +38,37 @@ const CardView = ({selected, pokemonList}) => {
                             <p>{pokemon.hp}</p>
                             <p>{pokemon.attack} / {pokemon.defense}</p>
                             <p>{pokemon.speed}</p>
-                            <p>{pokemon.height/10} m</p>
+                            <p>{pokemon.height/10} meters</p>
                             <p>{pokemon.weight/10} kg</p>
                         </div>
                     </div>
                     
-                    <div className="evolution-title-container">
-                        <h2 className="evolution-tree-title">Evolution Stages</h2>
+                    <div className="cardview-description">
+                        <h4>DESCRIPTION</h4>
+                        <p>{pokemon.description}</p>
                     </div>
-                    <div className="evolution-tree">
-                        {
-                            evolveTree.map(id => {
-                                let borderColor;
-                                let backgroundColor
 
-                                if(pokemon.id === (id)) {
-                                    borderColor = "gold"
-                                    backgroundColor = "black"
-                                } else {
-                                    borderColor = "black"
-                                    backgroundColor = "black"
-                                }
+                    <div className="evolution-container">
+                        <h4 className="evolution-tree-title">EVOLUTION STAGES</h4>
+                    
+                        <div className="evolution-tree">
+                            {
+                                evolveTree.map(id => {
+                                    let borderColor;
+                                    let backgroundColor
 
-                                return <Card pokemon={pokemonList[id-1]} backgroundColor={backgroundColor} borderColor={borderColor} evolveInfo={true}/>
-                            })
-                        }
+                                    if(pokemon.id === (id)) {
+                                        borderColor = "gold"
+                                        backgroundColor = "black"
+                                    } else {
+                                        borderColor = "black"
+                                        backgroundColor = "black"
+                                    }
+
+                                    return <Card pokemon={pokemonList[id-1]} backgroundColor={backgroundColor} borderColor={borderColor} evolveInfo={true}/>
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
 

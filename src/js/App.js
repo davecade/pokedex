@@ -17,28 +17,48 @@ class App extends Component {
 
     (async () => {
 
+      const formatText = text => {
+        for(let i=0; i<text.length ;i++) {
+          if(text[i]==='.' && text[i+1]!==' ') {
+            text[i+1] = " "
+          }
+        }
+        return text
+      }
+
       const { addNewPokemon, setLoading } = this.props
       let pokemonObject;
 
       for(let i=1; i <= 151; i++) {
         // -- Get data from API's
-          let pokeResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)  
-          let pokeData = await pokeResponse.json()
-          let typeList = []
-          for(let i=0; i<pokeData.types.length; i++) typeList.push(pokeData.types[i].type.name)
+          let pokeResponseAPI = fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+          let descriptionAPI = fetch(`https://pokeapi.co/api/v2/pokemon-species/${i}/`)
           
+          let pokeData = await Promise.all([pokeResponseAPI, descriptionAPI])
+          let pokeDataStats = await pokeData[0].json()
+          let pokeDataDesc = await pokeData[1].json()
+
+          let typeList = []
+          for(let i=0; i<pokeDataStats.types.length; i++) typeList.push(pokeDataStats.types[i].type.name)
+          
+          let desciptionPart1 = formatText(pokeDataDesc.flavor_text_entries[10].flavor_text.split("")).join("")
+          let desciptionPart2 = formatText(pokeDataDesc.flavor_text_entries[11].flavor_text.split("")).join("")
+          let description = `${desciptionPart1} ${desciptionPart2}`
+
           pokemonObject = {
             id: i,
             image: `./images/pokemon_${i}.jpg`,
-            name: pokeData.name,
+            name: pokeDataStats.name,
             type: typeList,
-            hp: pokeData.stats[0].base_stat,
-            height: pokeData.height,
-            weight: pokeData.weight,
-            attack: pokeData.stats[1].base_stat,
-            defense: pokeData.stats[2].base_stat,
-            speed: pokeData.stats[5].base_stat,
+            description: description,
+            hp: pokeDataStats.stats[0].base_stat,
+            height: pokeDataStats.height,
+            weight: pokeDataStats.weight,
+            attack: pokeDataStats.stats[1].base_stat,
+            defense: pokeDataStats.stats[2].base_stat,
+            speed: pokeDataStats.stats[5].base_stat,
           }
+
           addNewPokemon(pokemonObject)
       }
 
@@ -53,10 +73,10 @@ class App extends Component {
     return (
       <div className="App">
         <Modal/>
-          <div>
-            <Navbar/>
-            <CardList/>
-          </div>
+        <div>
+          <Navbar/>
+          <CardList className="App-content"/>
+        </div>
       </div>
     );
   }
