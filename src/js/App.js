@@ -30,21 +30,26 @@ class App extends Component {
       let pokemonObject;
 
       for(let i=1; i <= 151; i++) {
-        // -- Get data from API's
-          let pokeResponseAPI = fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+          // -- Get data from API's
+          let pokeDataAPI = fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
           let descriptionAPI = fetch(`https://pokeapi.co/api/v2/pokemon-species/${i}/`)
           
-          let pokeData = await Promise.all([pokeResponseAPI, descriptionAPI])
+          //-- Once data is received, convert to json
+          let pokeData = await Promise.all([pokeDataAPI, descriptionAPI])
           let pokeDataStats = await pokeData[0].json()
-          let pokeDataDesc = await pokeData[1].json()
+          let pokeDataDescription = await pokeData[1].json()
 
+          // -- at types of each pokemon to array
           let typeList = []
           for(let i=0; i<pokeDataStats.types.length; i++) typeList.push(pokeDataStats.types[i].type.name)
           
-          let desciptionPart1 = removeUnwantedArrowText(pokeDataDesc.flavor_text_entries[10].flavor_text.split("")).join("")
-          let desciptionPart2 = removeUnwantedArrowText(pokeDataDesc.flavor_text_entries[11].flavor_text.split("")).join("")
+          // -- Get description parts and remove unwanted arrow text,
+          // -- then combine description
+          let desciptionPart1 = removeUnwantedArrowText(pokeDataDescription.flavor_text_entries[10].flavor_text.split("")).join("")
+          let desciptionPart2 = removeUnwantedArrowText(pokeDataDescription.flavor_text_entries[11].flavor_text.split("")).join("")
           let description = `${desciptionPart1} ${desciptionPart2}`
 
+          // -- Create pokemon object
           pokemonObject = {
             id: i,
             image: `./images/pokemon_${i}.jpg`,
@@ -59,6 +64,7 @@ class App extends Component {
             speed: pokeDataStats.stats[5].base_stat,
           }
 
+          //-- add pokemon object to pokemon list in REDUX
           addNewPokemon(pokemonObject)
       }
 
