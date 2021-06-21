@@ -16,7 +16,7 @@
         left: 0;
         width: 1000px;
         height: 700px;
-        transform: scale(10) translateX(-25.4%) translateY(-40%) rotate(-60deg);
+        transform: scale(10) translateX(-24.9%) translateY(-40%) rotate(-60deg);
         transition: transform .01s cubic-bezier(.29,.28,.6,.6);
     }
 
@@ -38,7 +38,7 @@
         .cardview-name {
             text-transform: uppercase;
             z-index: 1;
-            width: 41%;
+            width: 35%;
             background: transparent;
             border-left: 23px solid transparent;
             border-bottom: 40px solid black;
