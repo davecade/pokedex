@@ -4,7 +4,6 @@ import './card-list.styles.scss'
 import { connect } from 'react-redux'
 
 const CardList = ({pokemonList, searchField, selectedType}) => {
-
     let filteredPokemon = pokemonList.filter(pokemon => 
         pokemon.name.toLowerCase().includes(searchField.toLowerCase()))
 

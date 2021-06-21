@@ -3,7 +3,6 @@ import './card.styles.scss';
 import { connect } from 'react-redux'
 import { selectPokemon } from '../../redux/pokemon/pokemon.actions'
 import { enableModal } from '../../redux/modal/modal.actions'
-import { Component } from 'react';
 
 
 const Card = ({stillLoading, pokemon, evolveInfo, backgroundColor, borderColor, enableModal, selectPokemon, pokemonList}) => {
