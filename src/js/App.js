@@ -81,7 +81,7 @@ class App extends Component {
         <Modal/>
         <div>
           <Navbar/>
-          <CardList className="App-content"/>
+          <CardList/>
         </div>
       </div>
     );
