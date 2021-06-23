@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 .card-content.mainPage {
     cursor: pointer;
     transition: .3s ease;
@@ -9,9 +11,11 @@
 
     h2 {
         text-transform: uppercase;
+        font-family: 'Orbitron';
+        letter-spacing: 2px;
         color: #ffcb05;
-        -webkit-text-stroke: 1px #1e1d7a;
-        font-family: sans-serif;
+        //-webkit-text-stroke: 1px #1e1d7a;
+        //font-family: sans-serif;
         margin-bottom: 1rem;
     }
 

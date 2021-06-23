@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 .cardview {
     position: relative;
     background: linear-gradient(to bottom right, #8c8cca, #ebefff);
@@ -5,6 +7,7 @@
     width: 100%;
     overflow: hidden;
     border-radius: 20px;
+    font-family: 'Orbitron';
 
 
     .red {
@@ -16,7 +19,7 @@
         left: 0;
         width: 1000px;
         height: 700px;
-        transform: scale(10) translateX(-24.9%) translateY(-40%) rotate(-60deg);
+        transform: scale(10) translateX(-24.8%) translateY(-40%) rotate(-60deg);
         transition: transform .01s cubic-bezier(.29,.28,.6,.6);
     }
 
@@ -45,7 +48,6 @@
             display: block;
             height: 0;
             line-height: 35px;
-            color: white;
         }
     }
 

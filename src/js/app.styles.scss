@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&family=Press+Start+2P&family=VT323&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -7,11 +9,12 @@
 .App {
     text-align: center;
     position: relative;
-
+    letter-spacing: 1px;
+    font-size: 80%;
     
     h1 {
       color: #ffcb05;
-      -webkit-text-stroke: 1px #1d4d82;
+      
     }
   }
   
