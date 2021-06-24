@@ -68,6 +68,7 @@ class App extends Component {
           addNewPokemon(pokemonObject)
       }
 
+      //-- Loading all pokemon to Object finished, set state to false
       setLoading(false)
 
     })();
