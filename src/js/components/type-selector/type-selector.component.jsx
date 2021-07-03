@@ -2,10 +2,9 @@ import React from 'react'
 import './type-selector.styles.scss'
 import { connect } from 'react-redux'
 import { updateTypeSelection } from '../../redux/search/search.actions'
+import types from '../../data/pokemon-types'
 
 const TypeSelector = ({updateTypeSelection}) => {
-
-    let listOfTypes = ["All Types", "grass", "poison", "fire", "flying", "water", "bug", "normal", "electric", "ground", "fairy", "fighting", "psychic", "rock", "steel", "ice", "ghost", "dragon"]
 
     const handleChange = (e) => {
         updateTypeSelection(e.target.value)
@@ -16,8 +15,8 @@ const TypeSelector = ({updateTypeSelection}) => {
             <div className="dropdown">
                 <select className="dropbtn" onChange={handleChange}>
                     {
-                        listOfTypes.map(type => {
-                            return <option selected={type === "All Types" ? "selected" : ""} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
+                        types.map(type => {
+                            return <option selected={type === "All Types" ? "selected" : ""} value={type}>{type.toUpperCase()}</option>
                         })
                     }
                 </select>
