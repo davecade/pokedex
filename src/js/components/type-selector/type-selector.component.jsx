@@ -13,10 +13,10 @@ const TypeSelector = ({updateTypeSelection}) => {
     return(
         <div className="typeSelector">
             <div className="dropdown">
-                <select className="dropbtn" onChange={handleChange}>
+                <select className="dropbtn" onChange={handleChange} >
                     {
                         types.map((type, index) => {
-                            return <option key={index} selected={type === "All Types" ? "selected" : ""} value={type}>{type.toUpperCase()}</option>
+                            return <option key={index} value={type}>{type.toUpperCase()}</option>
                         })
                     }
                 </select>

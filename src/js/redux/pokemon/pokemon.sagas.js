@@ -66,7 +66,9 @@ export function* fetchPokemonsAync() {
         yield put(setLoading(false))
 
     } catch(error) {
+
         yield put(fetchPokemonDataFailure(error))
+        
     }
 }
 
