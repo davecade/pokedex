@@ -4,7 +4,6 @@ import {
     fetchPokemonDataSuccess,
     fetchPokemonDataFailure,
     addNewPokemon,
-    setLoading
 } from "./pokemon.actions";
 
 
@@ -63,12 +62,11 @@ export function* fetchPokemonsAync() {
             yield put(addNewPokemon(pokemonObject))
         }
         yield put(fetchPokemonDataSuccess())
-        yield put(setLoading(false))
 
     } catch(error) {
 
         yield put(fetchPokemonDataFailure(error))
-        
+
     }
 }
 

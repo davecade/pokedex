@@ -10,11 +10,6 @@ export const selectPokemon = pokemon => ({
     payload: pokemon
 })
 
-export const setLoading = status => ({
-    type: PokemonActionTypes.SET_LOADING,
-    payload: status
-})
-
 export const fetchPokemonDataStart = () => ({
     type: PokemonActionTypes.FETCH_POKEMON_DATA_START
 })

@@ -19,19 +19,16 @@ const pokemonReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 selected: action.payload
             }
-        case PokemonActionTypes.SET_LOADING:
-            return {
-                ...state,
-                loading: action.payload
-            }
         case PokemonActionTypes.FETCH_POKEMON_DATA_SUCCESS:
             return {
                 ...state,
+                loading: false,
                 error: null
             }
         case PokemonActionTypes.FETCH_POKEMON_DATA_FAILURE:
             return {
                 ...state,
+                loading: false,
                 error: action.payload
             }
 
