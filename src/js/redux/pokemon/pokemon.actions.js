@@ -14,3 +14,7 @@ export const setLoading = status => ({
     type: PokemonActionTypes.SET_LOADING,
     payload: status
 })
+
+export const fetchPokemonAsync = () => ({
+    type: PokemonActionTypes.FETCH_POKEMON_ASYNC
+})
