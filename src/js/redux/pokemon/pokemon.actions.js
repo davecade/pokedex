@@ -15,6 +15,15 @@ export const setLoading = status => ({
     payload: status
 })
 
-export const fetchPokemonAsync = () => ({
-    type: PokemonActionTypes.FETCH_POKEMON_ASYNC
+export const fetchPokemonDataStart = () => ({
+    type: PokemonActionTypes.FETCH_POKEMON_DATA_START
+})
+
+export const fetchPokemonDataSuccess = () => ({
+    type: PokemonActionTypes.FETCH_POKEMON_DATA_SUCCESS
+})
+
+export const fetchPokemonDataFailure = error => ({
+    type: PokemonActionTypes.FETCH_POKEMON_DATA_FAILURE,
+    payload: error
 })

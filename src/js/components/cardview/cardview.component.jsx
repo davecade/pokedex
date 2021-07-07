@@ -65,7 +65,7 @@ const CardView = ({selected, pokemonList}) => {
                                         backgroundColor = "black"
                                     }
 
-                                    return <Card pokemon={pokemonList[id-1]} backgroundColor={backgroundColor} borderColor={borderColor} evolveInfo={true}/>
+                                    return <Card key={id} pokemon={pokemonList[id-1]} backgroundColor={backgroundColor} borderColor={borderColor} evolveInfo={true}/>
                                 })
                             }
                         </div>
