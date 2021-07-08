@@ -1,6 +1,6 @@
 import React from 'react';
 import './cardview.styles.scss'
-import { evolutionData } from '../../data/EVOLUTION_DATA';
+import evolutionData from '../../data/EVOLUTION_DATA';
 import Card from '../card/card.component'
 import { connect } from 'react-redux';
 
