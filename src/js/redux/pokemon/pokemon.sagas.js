@@ -18,6 +18,7 @@ const removeUnwantedArrowText = text => {
 
 export function* fetchPokemonsAync() {
     // -- Pokemon Image API: https://pokeres.bastionbot.org/images/pokemon/1.png
+    // -- image: `./images/pokemon_${i}.jpg`,
     // -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
 
     try {
