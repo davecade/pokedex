@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useEffect } from 'react';
 import './app.styles.scss';
 import CardList from './components/card-list/card-list.component';
 import Navbar from './components/navbar/navbar.component';
@@ -6,25 +6,23 @@ import Modal from './components/modal/modal.component';
 import { connect } from 'react-redux'
 import { fetchPokemonDataStart } from './redux/pokemon/pokemon.actions'
 
-class App extends Component {
+const App = ({ fetchPokemonDataStart }) => {
 
-  componentDidMount() {
-    const { fetchPokemonDataStart } = this.props
+  // -- Empty array so that useEffct only runs once when App first mounted
+  useEffect(() => {
     fetchPokemonDataStart()
-  }
+  }, [])
 
   // -- Redux for state management - No props needs to be sent
-  render() {
-    return (
-      <div className="App">
-        <Modal/>
-        <div>
-          <Navbar/>
-          <CardList/>
-        </div>
+  return (
+    <div className="App">
+      <Modal/>
+      <div>
+        <Navbar/>
+        <CardList/>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 const mapDispatchToProps = dispatch => ({
