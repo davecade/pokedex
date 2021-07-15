@@ -13,7 +13,7 @@ const App = ({ fetchPokemonDataStart }) => {
     fetchPokemonDataStart()
   }, [])
 
-  // -- Redux for state management - No props needs to be sent
+  // -- Redux for state management - No props needs to be sent down to child components
   return (
     <div className="App">
       <Modal/>
