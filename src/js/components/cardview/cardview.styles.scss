@@ -41,13 +41,6 @@
     
     }
 
-    .test {
-        color: #7371ff;
-        background: #0a247a;
-        border: 2px solid #ffcb05;
-    }
-
-
     .name-container {
         position: relative;
         display: flex;
@@ -61,7 +54,6 @@
             margin-bottom: 5px;
             
         }
-        
 
         .cardview-name {
             text-transform: uppercase;
@@ -88,8 +80,6 @@
             }
         }
     }
-
-
 
     .cardview-content {
         position: relative;

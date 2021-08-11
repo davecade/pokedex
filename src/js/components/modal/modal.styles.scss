@@ -27,17 +27,14 @@
             height: 100vh;
             border-radius: 0;
         }
-        //border: 2px solid black;
 
-        // .modal-title {
-        //     background: #02026d;
-        //     padding: 1rem;
-        //     color: #fff;
-        //     border-top-right-radius: 5px;
-        //     border-top-left-radius: 5px;
-        //     display: flex;
-        //     justify-content: space-between;
-        // }
+        @media (max-width: 500px) {
+            display: flex;
+            top: 0;
+            height: 100vh;
+            border-radius: 0;
+            transition-duration: .7s;
+        }
 
         h4 {
             padding: 1rem;
