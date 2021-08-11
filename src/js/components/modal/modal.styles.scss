@@ -13,14 +13,6 @@
     visibility: hidden;
     z-index: 2;
 
-    @media (max-width: 800px) {
-
-    }
-
-    @media (max-width: 1000px) {
-
-    }
-
     .modal-content {
         top: 10%;
         width: 0px;
@@ -28,6 +20,13 @@
         transition-property: width, visibility;
         visibility: hidden;
         position: fixed;
+
+        @media (max-width: 800px) {
+            display: flex;
+            top: 0;
+            height: 100vh;
+            border-radius: 0;
+        }
         //border: 2px solid black;
 
         // .modal-title {
@@ -48,15 +47,5 @@
         p {
             color: black
         }
-
-        @media (max-width: 800px) {
-            display: flex;
-            top: 0;
-            height: 100vh;
-            border-radius: 0;
-        }
-
-
     }
-
 }

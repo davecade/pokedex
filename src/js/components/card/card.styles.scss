@@ -14,11 +14,13 @@
         font-family: 'Orbitron';
         letter-spacing: 2px;
         color: #ffcb05;
-        //-webkit-text-stroke: 1px #1e1d7a;
-        //font-family: sans-serif;
         margin-bottom: 1rem;
 
         @media (max-width: 1000px) {
+            font-size: .8rem;
+        }
+
+        @media (max-width: 800px) {
             font-size: .6rem;
         }
     }
@@ -29,12 +31,12 @@
 
         @media (max-width: 1000px) {
             width: 150px;
-            height: 200px;
+            height: 180px;
         }
 
         @media (max-width: 800px) {
             width: 90px;
-            height: 90px;
+            height: 100px;
         }
     }
 
@@ -55,6 +57,11 @@
     margin: 1rem;
     padding: 1rem;
     width: 35%;
+    border: 5px solid gold;
+
+    @media (max-width: 500px) {
+        border-width: 3px;
+    }
 
     img {
         width: 100%;

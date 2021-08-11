@@ -19,7 +19,7 @@ const Card = ({stillLoading, pokemon, evolveInfo, backgroundColor, borderColor, 
         <div
             className={`card-content ${evolveInfo ? 'evolveInfo' : 'mainPage'}`}
             id={pokemon.id} onClick={handleClickOnCard}
-            style={{border: `5px solid ${borderColor}`, background: `${backgroundColor}`}}>
+            style={{borderColor: `${borderColor}`, background: `${backgroundColor}`}}>
 
             {evolveInfo ? '' : <h2>{pokemon.name}</h2>}
             <img src={pokemon.image} alt=""/>

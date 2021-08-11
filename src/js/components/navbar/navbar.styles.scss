@@ -10,12 +10,14 @@
     padding: .5rem 0;
     font-family: 'Orbitron';
 
+    @media (max-width: 1000px) {
+        font-size: .6rem;
+    }
+
     .params {
         display: flex;
         justify-content: center;
     }
 
-    @media (max-width: 1000px) {
-        font-size: .6rem;
-    }
+
 }
