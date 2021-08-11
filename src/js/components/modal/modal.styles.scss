@@ -28,7 +28,6 @@
         transition-property: width, visibility;
         visibility: hidden;
         position: fixed;
-        border-radius: 20px;
         //border: 2px solid black;
 
         // .modal-title {
@@ -53,7 +52,7 @@
         @media (max-width: 800px) {
             display: flex;
             top: 0;
-            bottom: 0;
+            height: 100vh;
             border-radius: 0;
         }
 
