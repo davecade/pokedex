@@ -132,9 +132,16 @@
             }
 
             @media (max-width: 800px) {
+                width: 200px;
+                height: 200px;
+            }
+
+            @media (max-width: 500px) {
                 width: 150px;
                 height: 150px;
             }
+
+
         }
 
         .left {
@@ -186,8 +193,14 @@
                         }
 
                         @media (max-width: 800px) {
+                            height: 25px;
+                        }
+
+                        @media (max-width: 500px) {
                             height: 20px;
                         }
+
+
                         
                     }
                     
@@ -212,8 +225,14 @@
                         }
 
                         @media (max-width: 800px) {
+                            height: 25px;
+                        }
+
+                        @media (max-width: 500px) {
                             height: 20px;
                         }
+
+
                     }
 
     

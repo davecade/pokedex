@@ -28,6 +28,11 @@
         height: 250px;
 
         @media (max-width: 1000px) {
+            width: 150px;
+            height: 200px;
+        }
+
+        @media (max-width: 800px) {
             width: 90px;
             height: 90px;
         }
