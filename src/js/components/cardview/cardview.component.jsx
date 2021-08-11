@@ -3,6 +3,7 @@ import './cardview.styles.scss'
 import evolutionData from '../../data/evolution-data';
 import Card from '../card/card.component'
 import { connect } from 'react-redux';
+import { disableModal } from '../../redux/modal/modal.actions'
 
 const findEvolutionTree = (pokemonId) => {
     for (let tree of evolutionData) {
@@ -10,7 +11,7 @@ const findEvolutionTree = (pokemonId) => {
     }
 }
 
-const CardView = ({selected, pokemonList}) => {
+const CardView = ({selected, pokemonList, disableModal}) => {
 
     let pokemon = selected
     let evolveTree = (findEvolutionTree(pokemon.id) ? findEvolutionTree(pokemon.id): [])
@@ -19,11 +20,13 @@ const CardView = ({selected, pokemonList}) => {
         <div className="cardview">
             <div className="name-container">
                 <h1 className="cardview-name">{pokemon.name}</h1>
-            </div> 
+            </div>
+
+
             
             <div className="cardview-content">
-                <div className="left">
 
+                <div className="left">
                     <div className="cardview-stats">
                         <div className="stat-title">
                             <p>TYPE</p>
@@ -77,6 +80,9 @@ const CardView = ({selected, pokemonList}) => {
                     <img src={pokemon.image} alt="" className="cardview-img"/>
                 </div>
                 
+                <div className="close-modal">
+                    <i onClick={disableModal} class="fas fa-times-circle"></i>
+                </div>
 
             </div>
             <div className="red"></div>
@@ -89,4 +95,8 @@ const mapStateToProps = state => ({
     selected: state.pokemon.selected
 })
 
-export default connect(mapStateToProps)(CardView)
+const mapDispatchToProps = dispatch => ({
+    disableModal: () => dispatch(disableModal())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardView)

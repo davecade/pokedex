@@ -7,13 +7,16 @@ import { disableModal } from '../../redux/modal/modal.actions'
 const Modal = ({modalEnabled, disableModal}) => {
     let visibility
     let width
+    let max
 
     if(modalEnabled) {
         visibility = "visible";
-        width = "1000px";
+        max = '1000px'
+        width = "100%";
     } else {
         visibility = "hidden";
-        width = "0px";
+        max = '1000px'
+        width = "0";
     }
 
     document.onkeydown = function(e) {toggleModal(e)}
@@ -37,6 +40,7 @@ const Modal = ({modalEnabled, disableModal}) => {
                     className="modal-content"
                     style={{
                         visibility: visibility, 
+                        maxWidth: max,
                         width: width
                     }}
                 >

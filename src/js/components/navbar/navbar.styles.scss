@@ -5,18 +5,17 @@
     top: 0;
     width: 100%;
     z-index: 1;
-    //background: #22252c;
     background: #1a1d22;
     border-bottom: 2px solid black;
     padding: .5rem 0;
     font-family: 'Orbitron';
 
-    // .title {
-    //     -webkit-text-stroke: 1px #1d4d82;
-    // }
-
     .params {
         display: flex;
         justify-content: center;
+    }
+
+    @media (max-width: 1000px) {
+        font-size: .6rem;
     }
 }

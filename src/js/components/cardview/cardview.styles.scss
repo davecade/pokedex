@@ -9,6 +9,11 @@
     border-radius: 20px;
     font-family: 'Orbitron';
 
+    @media (max-width: 1000px) {
+        height: 100%;
+        width: 100%;
+        border-radius: 0;
+    }
 
     .red {
         content: '';
@@ -21,6 +26,19 @@
         height: 700px;
         transform: scale(10) translateX(-24.8%) translateY(-40%) rotate(-60deg);
         transition: transform .01s cubic-bezier(.29,.28,.6,.6);
+
+        @media (max-width: 1000px) {
+            transform: scale(10) translateX(-23.3%) translateY(-40%) rotate(-50deg);
+        }
+
+        @media (max-width: 800px) {
+            transform: scale(10) translateX(-22.5%) translateY(-40%) rotate(-45deg);
+        }
+
+        @media (max-width: 500px) {
+            transform: scale(10) translateX(-24%) translateY(-40%) rotate(-40deg);
+        }
+    
     }
 
     .test {
@@ -36,6 +54,13 @@
         justify-content: flex-end;
         z-index: 1;
         margin-top: 1.5rem;
+
+        @media (max-width: 800px) {
+            justify-content: center;
+            margin-top: .5rem;
+            margin-bottom: 5px;
+            
+        }
         
 
         .cardview-name {
@@ -48,6 +73,19 @@
             display: block;
             height: 0;
             line-height: 35px;
+
+            @media (max-width: 1000px) {
+
+            }
+
+            @media (max-width: 800px) {
+                width: 100%;
+                border-left: 0px solid transparent;
+                border-bottom: 35px solid black;
+                height: 0;
+                line-height: 35px;
+                font-size: 1rem;
+            }
         }
     }
 
@@ -63,11 +101,39 @@
         width: 100%;
         z-index: 10;
 
+        @media (max-width: 800px) {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+
+        .close-modal {
+            visibility: hidden;
+
+            @media (max-width: 800px) {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                color: black;
+                font-size: 1.5rem;
+                visibility: visible;
+            }
+        }
 
 
         .cardview-img {
             width: 450px;
             height: 450px;
+
+            @media (max-width: 1000px) {
+                width: 350px;
+                height: 350px;
+            }
+
+            @media (max-width: 800px) {
+                width: 150px;
+                height: 150px;
+            }
         }
 
         .left {
@@ -83,6 +149,16 @@
                 border-radius: 15px 50px 15px 50px;
                 overflow: hidden;
                 margin-bottom: 1rem;
+
+                @media (max-width: 800px) {
+                    width: 360px;
+                    font-size: .60rem;
+                }
+
+                @media (max-width: 1000px) {
+                    width: 400px;
+                    font-size: .7rem;
+                }
                 
     
                 .pokeball {
@@ -109,6 +185,11 @@
                         &:last-child {
                             margin-bottom: 0;
                         }
+
+                        @media (max-width: 800px) {
+                            height: 20px;
+                        }
+                        
                         
                     }
                     
@@ -131,6 +212,10 @@
                         &:last-child {
                             margin-bottom: 0;
                         }
+
+                        @media (max-width: 800px) {
+                            height: 20px;
+                        }
                     }
     
                 }
@@ -150,6 +235,10 @@
                     font-weight: bold;
                     background: rgba(0, 0, 0, 0.8);
                     border-radius: 15px 50px 0px 0px;
+                    
+                    @media (max-width: 800px) {
+                        padding: 0.5rem;
+                    }
                 }
 
                 p {
@@ -157,6 +246,15 @@
                     background: hsla(220, 13%, 18%, .8);
                     padding: 0.5rem 1rem;
                     border-radius: 0px 0px 15px 50px;
+
+                    @media (max-width: 800px) {
+                        padding: 0.5rem 1rem;
+                    }
+                }
+
+                @media (max-width: 1000px) {
+                    width: 400px;
+                    font-size: .7rem;
                 }
             }
 
@@ -183,6 +281,11 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                }
+
+                @media (max-width: 1000px) {
+                    width: 400px;
+                    font-size: .7rem;
                 }
             }
 

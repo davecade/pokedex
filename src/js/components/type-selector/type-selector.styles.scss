@@ -13,11 +13,16 @@
         padding: 8px;
         font-size: .9rem;
         font-family: 'Orbitron';
-        
         border: none;
         cursor: pointer;
         margin: 1rem 1rem;
         border: 1px solid #ffcb05;
+
+        @media (max-width: 1000px) {
+            width: 7rem;
+            height: 2rem;
+            font-size: .7rem;
+        }
     }
     
     /* The container <div> - needed to position the dropdown content */
@@ -35,6 +40,7 @@
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
+
     }
     
     /* Links inside the dropdown */
@@ -43,6 +49,10 @@
         padding: 12px 16px;
         text-decoration: none;
         display: block;
+
+        @media (max-width: 1000px) {
+
+        }
     }
     
     /* Change color of dropdown links on hover */

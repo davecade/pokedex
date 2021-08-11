@@ -17,15 +17,28 @@
         //-webkit-text-stroke: 1px #1e1d7a;
         //font-family: sans-serif;
         margin-bottom: 1rem;
+
+        @media (max-width: 1000px) {
+            font-size: .6rem;
+        }
     }
 
     img {
         width: 200px;
         height: 250px;
+
+        @media (max-width: 1000px) {
+            width: 90px;
+            height: 90px;
+        }
     }
 
     &:hover {
         transform: scale(1.2);
+
+        @media (max-width: 1000px) {
+            transform: none;
+        }
     }
 }
 
