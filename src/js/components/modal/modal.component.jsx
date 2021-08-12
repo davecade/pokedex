@@ -7,15 +7,12 @@ import { disableModal } from '../../redux/modal/modal.actions'
 const Modal = ({modalEnabled, disableModal}) => {
     let visibility
     let width
-    let max
 
     if(modalEnabled) {
         visibility = "visible";
-        max = '1000px'
         width = "100%";
     } else {
         visibility = "hidden";
-        max = '1000px'
         width = "0";
     }
 
@@ -40,7 +37,6 @@ const Modal = ({modalEnabled, disableModal}) => {
                     className="modal-content"
                     style={{
                         visibility: visibility, 
-                        maxWidth: max,
                         width: width
                     }}
                 >

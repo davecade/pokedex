@@ -6,11 +6,14 @@ import Modal from './components/modal/modal.component';
 import { connect } from 'react-redux'
 import { fetchPokemonDataStart } from './redux/pokemon/pokemon.actions'
 
-const App = ({ fetchPokemonDataStart }) => {
+const App = ({ fetchPokemonDataStart, pokemonList }) => {
 
   // -- Empty array so that useEffct only runs once when App first mounted
   useEffect(() => {
-    fetchPokemonDataStart()
+    if(pokemonList.length===0) {
+      fetchPokemonDataStart()
+    }
+    
   }, [])
 
   // -- Redux for state management - No props needs to be sent down to child components
@@ -25,8 +28,12 @@ const App = ({ fetchPokemonDataStart }) => {
   );
 }
 
+const mapStateToProps = state => ({
+  pokemonList: state.pokemon.pokemonList
+})
+
 const mapDispatchToProps = dispatch => ({
   fetchPokemonDataStart: () => dispatch(fetchPokemonDataStart())
 })
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
