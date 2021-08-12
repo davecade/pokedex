@@ -104,9 +104,9 @@
             @media (max-width: 800px) {
                 width: 100%;
                 display: flex;
-                justify-content: flex-end;
+                justify-content: center;
                 color: black;
-                font-size: 1.5rem;
+                font-size: 2.2rem;
                 visibility: visible;
             }
         }
@@ -128,8 +128,8 @@
             }
 
             @media (max-width: 500px) {
-                width: 150px;
-                height: 150px;
+                width: 160px;
+                height: 160px;
                 margin-bottom: .5rem;
             }
 
@@ -194,9 +194,7 @@
                         &:last-child {
                             margin-bottom: 0;
                         }
-                        
                     }
-                    
                 }
     
                 .stat-value {
@@ -226,7 +224,6 @@
                         }
                     }
                 }
-    
             }
 
             .cardview-description {
@@ -248,7 +245,6 @@
 
                 @media (max-width: 500px) {
                     width: 350px;
-                    font-size: .6rem;
                     border-radius: 15px 40px 15px 40px;
                 }
                 
@@ -260,7 +256,7 @@
                     border-radius: 15px 50px 0px 0px;
                     
                     @media (max-width: 800px) {
-                        padding: 0.5rem;
+                        padding: 0.7rem;
                     }
                 }
 
@@ -276,6 +272,7 @@
 
                     @media (max-width: 500px) {
                         border-radius: 0px 0px 15px 40px;
+                        padding: 0.5rem 1rem;
                     }
                 }
 
@@ -315,6 +312,10 @@
                     width: 100%;
                     background: rgba(0, 0, 0, 0.8);
                     border-radius: 15px 50px 0px 0px;
+
+                    @media (max-width: 500px) {
+                        padding: .7rem;
+                    }
         
                 }
 
@@ -322,6 +323,15 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
+
+                    .evolveInfo {
+                        margin: .5rem;
+                        padding: .7rem;
+
+                        @media (max-width: 800px) {
+                            margin: .3rem;
+                        }
+                    }
                 }
             }
         }

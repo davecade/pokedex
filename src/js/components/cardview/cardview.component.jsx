@@ -25,6 +25,9 @@ const CardView = ({selected, pokemonList, disableModal}) => {
 
             
             <div className="cardview-content">
+                <div className="close-modal">
+                    <i class="fas fa-chevron-circle-left" onClick={disableModal}></i>
+                </div>
 
                 <div className="left">
                     <div className="cardview-stats">
@@ -78,10 +81,6 @@ const CardView = ({selected, pokemonList, disableModal}) => {
 
                 <div className="cardview-pokemon">
                     <img src={pokemon.image} alt="" className="cardview-img"/>
-                </div>
-                
-                <div className="close-modal">
-                    <i onClick={disableModal} class="fas fa-times-circle"></i>
                 </div>
 
             </div>

@@ -13,15 +13,19 @@
         padding: 8px;
         font-size: .9rem;
         font-family: 'Orbitron';
-        border: none;
+        outline: none;
+        border: 1px solid black;
         cursor: pointer;
         margin: 1rem 1rem;
-        border: 1px solid #ffcb05;
 
         @media (max-width: 1000px) {
             width: 8rem;
             height: 2rem;
             font-size: .7rem;
+        }
+
+        &:focus {
+            border: 1px solid #ffcb05;
         }
     }
     
