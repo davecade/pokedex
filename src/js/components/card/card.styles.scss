@@ -23,18 +23,30 @@
         @media (max-width: 800px) {
             font-size: .6rem;
         }
+
+        // -- Mobile landscape
+        @media (max-height: 500px) {
+            font-size: .6rem;
+        }
     }
 
     img {
         width: 200px;
         height: 250px;
 
+        // -- Mobile portrait
         @media (max-width: 1000px) {
             width: 150px;
             height: 180px;
         }
 
         @media (max-width: 800px) {
+            width: 90px;
+            height: 100px;
+        }
+
+        // -- Mobile landscape
+        @media (max-height: 500px) {
             width: 90px;
             height: 100px;
         }

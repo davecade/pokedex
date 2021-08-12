@@ -6,11 +6,20 @@
     background: #0a247a;
     outline: none;
     border: 1px solid black;
-    //border: 1px solid #ffcb05;
     color: white;
     font-family: 'Orbitron';
     letter-spacing: 1px;
     width: 11rem;
+
+    @media (max-width: 1000px) {
+        width: 9rem;
+        height: 2rem;
+        font-size: 0.7rem;
+    }
+
+    @media (max-height: 500px) {
+        margin: .1rem
+    }
 
 
     &::placeholder {
@@ -26,10 +35,6 @@
         border: 1px solid #ffcb05;
     }
 
-    @media (max-width: 1000px) {
-        width: 9rem;
-        height: 2rem;
-        font-size: 0.7rem;
-    }
+
 
 }

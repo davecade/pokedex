@@ -32,6 +32,7 @@
         position: fixed;
         
 
+        // -- Mobile portraite
         @media (max-width: 800px) {
             display: flex;
             top: 0;
@@ -46,6 +47,12 @@
             height: 100vh;
             border-radius: 0;
             transition-duration: .7s;
+        }
+
+        // -- Mobile landscape
+        @media (max-height: 500px) {
+            top: 0;
+            
         }
 
         h4 {
