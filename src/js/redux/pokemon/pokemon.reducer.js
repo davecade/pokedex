@@ -1,7 +1,6 @@
 import { PokemonActionTypes } from '../pokemon/pokemon.types'
 
 const INITIAL_STATE = {
-    pokemonList: [],
     selected: {type: []},
     loading: true,
     error: null
@@ -9,11 +8,6 @@ const INITIAL_STATE = {
 
 const pokemonReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
-        case PokemonActionTypes.ADD_NEW_POKEMON:
-            return {
-                ...state,
-                pokemonList: [...state.pokemonList, action.payload]
-            }
         case PokemonActionTypes.ADD_POKEMON_TO_SELECTED:
             return {
                 ...state,

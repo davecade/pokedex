@@ -11,7 +11,7 @@ const findEvolutionTree = (pokemonId) => {
     }
 }
 
-const CardView = ({selected, pokemonList, disableModal}) => {
+const CardView = ({selected, disableModal}) => {
 
     let pokemon = selected
     let evolveTree = (findEvolutionTree(pokemon.id) ? findEvolutionTree(pokemon.id): [])
@@ -28,7 +28,7 @@ const CardView = ({selected, pokemonList, disableModal}) => {
             
             <div className="cardview-content">
                 <div className="close-modal">
-                    <i class="fas fa-chevron-circle-left" onClick={disableModal}></i>
+                    <i className="fas fa-chevron-circle-left" onClick={disableModal}></i>
                 </div>
 
                 <div className="left">
@@ -73,7 +73,7 @@ const CardView = ({selected, pokemonList, disableModal}) => {
                                         backgroundColor = "black"
                                     }
 
-                                    return <Card key={id} dataID={id-1} backgroundColor={backgroundColor} borderColor={borderColor} evolveInfo={true}/>
+                                    return <Card key={id} pokemonID={id-1} backgroundColor={backgroundColor} borderColor={borderColor} evolveInfo={true}/>
                                 })
                             }
                         </div>
@@ -92,7 +92,6 @@ const CardView = ({selected, pokemonList, disableModal}) => {
 }
 
 const mapStateToProps = state => ({
-    pokemonList: state.pokemon.pokemonList,
     selected: state.pokemon.selected
 })
 

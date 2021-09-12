@@ -2,18 +2,27 @@ import React, { Fragment } from 'react';
 import Card from '../card/card.component'
 import './card-list.styles.scss'
 import { connect } from 'react-redux'
-import { names } from '../../data/pokemon.data'
+import { names, typeList } from '../../data/pokemon.data'
 
-const CardList = ({pokemonList, searchField, selectedType}) => {
-    let filteredPokemon = names.filter(pokemon => 
-        pokemon.toLowerCase().includes(searchField.toLowerCase()))
 
-    //-- Fix types later
-    // if(selectedType!=='All Types') {
-    //     filteredPokemon = filteredPokemon.filter(pokemon =>
-    //         pokemon.type.includes(selectedType))
-    // }
 
+const CardList = ({ searchField, selectedType}) => {
+    let filteredPokemon = []
+
+    //-- adding pokemon as object
+    names.forEach((pokemon, index) => {
+        if(pokemon.toLowerCase().includes(searchField.toLowerCase())) {
+            filteredPokemon.push({
+                name: pokemon,
+                id: index,
+                types: typeList[index]
+            })
+        }
+    })
+
+    if(selectedType!=='All Types') {
+        filteredPokemon = filteredPokemon.filter(pokemon => pokemon.types.includes(selectedType))
+    }
 
     return (
         <Fragment>
@@ -21,7 +30,7 @@ const CardList = ({pokemonList, searchField, selectedType}) => {
                 <div className="card-list-container">
                     {
                         filteredPokemon.map((pokemon, index) => {
-                            return <Card key={index} pokemon={pokemon} dataID={index} evolveInfo={false}/>
+                            return <Card key={index} pokemonID={pokemon.id} evolveInfo={false}/>
                         })
                     }
                 </div>
@@ -31,7 +40,6 @@ const CardList = ({pokemonList, searchField, selectedType}) => {
 }
 
 const mapStateToProps = state => ({
-    pokemonList: state.pokemon.pokemonList,
     searchField: state.search.searchField,
     selectedType: state.search.type
 })

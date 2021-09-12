@@ -6,31 +6,30 @@ import { enableModal } from '../../redux/modal/modal.actions'
 import { names } from '../../data/pokemon.data'
 
 
-const Card = ({stillLoading, dataID, pokemon, evolveInfo, backgroundColor, borderColor, enableModal, selectPokemon, pokemonList}) => {
+const Card = ({ pokemonID, evolveInfo, backgroundColor, borderColor, enableModal, selectPokemon}) => {
 
 
     const handleClickOnCard = (e) => {
         let clickedCard = e.target.closest('.card-content')
         let clickedCardId = clickedCard.getAttribute("id")
         console.log("clickedCardId", clickedCardId)
-        selectPokemon(dataID+1)
+        selectPokemon(pokemonID+1)
         enableModal()
     }
     //-- stillLoading ? '' : 
     return (
         <div
             className={`card-content ${evolveInfo ? 'evolveInfo' : 'mainPage'}`}
-            id={dataID} onClick={handleClickOnCard}
+            id={pokemonID} onClick={handleClickOnCard}
             style={{borderColor: `${borderColor}`, background: `${backgroundColor}`}}>
 
-            {evolveInfo ? '' : <h2>{names[dataID]}</h2>}
-            <img src={`./images/pokemon_${dataID+1}.jpg`} alt=""/>
+            {evolveInfo ? '' : <h2>{names[pokemonID]}</h2>}
+            <img src={`./images/pokemon_${pokemonID+1}.jpg`} alt=""/>
         </div>
     )
 }
 
 const mapStateToProps = state => ({
-    pokemonList: state.pokemon.pokemonList,
     stillLoading: state.pokemon.loading
 })
 

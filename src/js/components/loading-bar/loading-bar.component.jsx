@@ -1,23 +1,25 @@
-import React, { Fragment } from 'react';
-import './loading-bar.styles.scss';
+//-- No longer used
 
-export const LoadingBar = ({length}) => {
-    let percent;
+// import React, { Fragment } from 'react';
+// import './loading-bar.styles.scss';
 
-    // -- Runs loading bar if loading is in progress
-    const widthPercent = () => {
-        let currentLength = length
-        percent = Math.floor((currentLength/151)*100)
-        return percent
-    }
+// export const LoadingBar = ({length}) => {
+//     let percent;
 
-    return (
-        <Fragment>
-            <h1>Please wait while loading Pokemon</h1>
-            <h1>{widthPercent()}%</h1>
-            <div className="loading-container">
-                <div className="loading-bar" style={{width: `${widthPercent()}%`}}></div>
-            </div>
-        </Fragment>
-    )
-}
+//     // -- Runs loading bar if loading is in progress
+//     const widthPercent = () => {
+//         let currentLength = length
+//         percent = Math.floor((currentLength/151)*100)
+//         return percent
+//     }
+
+//     return (
+//         <Fragment>
+//             <h1>Please wait while loading Pokemon</h1>
+//             <h1>{widthPercent()}%</h1>
+//             <div className="loading-container">
+//                 <div className="loading-bar" style={{width: `${widthPercent()}%`}}></div>
+//             </div>
+//         </Fragment>
+//     )
+// }
