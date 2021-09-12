@@ -7,7 +7,6 @@ import { disableModal } from '../../redux/modal/modal.actions'
 const Modal = ({modalEnabled, disableModal}) => {
     let visibility
     let width
-
     if(modalEnabled) {
         visibility = "visible";
         width = "100%";
@@ -16,6 +15,7 @@ const Modal = ({modalEnabled, disableModal}) => {
         width = "0";
     }
 
+    //-- Listens to keyboard functions
     document.onkeydown = function(e) {toggleModal(e)}
     const toggleModal = (e) => {
         if(e.target.matches('.modal') || e.key === 'Escape') {
