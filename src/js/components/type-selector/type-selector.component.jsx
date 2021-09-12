@@ -2,7 +2,7 @@ import React from 'react'
 import './type-selector.styles.scss'
 import { connect } from 'react-redux'
 import { updateTypeSelection } from '../../redux/search/search.actions'
-import types from '../../data/pokemon-types'
+import {types} from '../../data/pokemon.data'
 
 const TypeSelector = ({updateTypeSelection}) => {
 

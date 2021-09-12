@@ -9,12 +9,12 @@ import { fetchPokemonDataStart } from './redux/pokemon/pokemon.actions'
 const App = ({ fetchPokemonDataStart, pokemonList }) => {
 
   // -- Empty array so that useEffct only runs once when App first mounted
-  useEffect(() => {
-    if(pokemonList.length===0) {
-      fetchPokemonDataStart()
-    }
+  // useEffect(() => {
+  //   if(pokemonList.length===0) {
+  //     fetchPokemonDataStart(1)
+  //   }
     
-  }, [])
+  // }, [])
 
   // -- Redux for state management - No props needs to be sent down to child components
   return (
@@ -33,7 +33,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchPokemonDataStart: () => dispatch(fetchPokemonDataStart())
+  fetchPokemonDataStart: id => dispatch(fetchPokemonDataStart(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

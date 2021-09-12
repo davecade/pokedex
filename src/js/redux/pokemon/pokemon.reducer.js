@@ -14,7 +14,7 @@ const pokemonReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 pokemonList: [...state.pokemonList, action.payload]
             }
-        case PokemonActionTypes.SELECT_POKEMON:
+        case PokemonActionTypes.ADD_POKEMON_TO_SELECTED:
             return {
                 ...state,
                 selected: action.payload

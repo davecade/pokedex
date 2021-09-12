@@ -1,6 +1,6 @@
 import React from 'react';
 import './cardview.styles.scss'
-import evolutionData from '../../data/evolution-data';
+import { evolutionData } from '../../data/pokemon.data';
 import Card from '../card/card.component'
 import { connect } from 'react-redux';
 import { disableModal } from '../../redux/modal/modal.actions'
@@ -15,6 +15,8 @@ const CardView = ({selected, pokemonList, disableModal}) => {
 
     let pokemon = selected
     let evolveTree = (findEvolutionTree(pokemon.id) ? findEvolutionTree(pokemon.id): [])
+
+    console.log("evolveTree", evolveTree)
 
     return (
         <div className="cardview">
@@ -71,7 +73,7 @@ const CardView = ({selected, pokemonList, disableModal}) => {
                                         backgroundColor = "black"
                                     }
 
-                                    return <Card key={id} pokemon={pokemonList[id-1]} backgroundColor={backgroundColor} borderColor={borderColor} evolveInfo={true}/>
+                                    return <Card key={id} dataID={id-1} backgroundColor={backgroundColor} borderColor={borderColor} evolveInfo={true}/>
                                 })
                             }
                         </div>
