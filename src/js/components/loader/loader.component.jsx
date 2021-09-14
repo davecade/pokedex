@@ -3,7 +3,9 @@ import './loader.styles.scss'
 
 const Loader = () => {
     return (
-        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <div className="loader__container">
+            <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </div>
     )
 }
 

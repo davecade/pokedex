@@ -20,9 +20,7 @@ const Navbar = ({ loading }) => {
                     <SearchBar />
                     <TypeSelector />
                   </div>
-                </Fragment>
-
-                
+                </Fragment> 
               }
 
             </div>
