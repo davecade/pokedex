@@ -3,7 +3,7 @@ import './search-bar.styles.scss'
 import { searchPokemon } from '../../redux/search/search.actions'
 import { connect } from 'react-redux'
 
-const SearchBar = ({ searchPokemon }) => {
+const SearchBar = ({ searchField, searchPokemon }) => {
 
     const handleChange = (e) => {
         let userInput = e.target.value
@@ -11,14 +11,17 @@ const SearchBar = ({ searchPokemon }) => {
     }
 
     return (
-        <input className="searchbar" placeholder="Search Pokemon" onChange={handleChange} />
+        <input className="searchbar" placeholder="Search Pokemon" value={searchField} onChange={handleChange} />
     )
 }
 
+const mapStateToProps = state => ({
+    searchField: state.search.searchField
+})
 
 const mapDispatchToProps = dispatch => ({
     searchPokemon: userInput => dispatch(searchPokemon(userInput))
 })
 
 
-export default connect(null, mapDispatchToProps)(SearchBar)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
