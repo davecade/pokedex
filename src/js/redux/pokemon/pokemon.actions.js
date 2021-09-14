@@ -6,6 +6,10 @@ export const selectPokemon = id => ({
     payload: id
 })
 
+export const startLoading = () => ({
+    type: PokemonActionTypes.START_LOADING
+})
+
 export const addPokemonToSelected = pokemon => ({
     type: PokemonActionTypes.ADD_POKEMON_TO_SELECTED,
     payload: pokemon

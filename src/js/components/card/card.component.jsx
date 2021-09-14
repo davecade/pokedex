@@ -2,19 +2,17 @@ import React from 'react';
 import './card.styles.scss';
 import { connect } from 'react-redux'
 import { selectPokemon } from '../../redux/pokemon/pokemon.actions'
-import { enableModal } from '../../redux/modal/modal.actions'
+//import { enableModal } from '../../redux/modal/modal.actions'
 import { names } from '../../data/pokemon.data'
 
 
 const Card = ({ pokemonID, evolveInfo, backgroundColor, borderColor, enableModal, selectPokemon}) => {
 
 
-    const handleClickOnCard = (e) => {
-        let clickedCard = e.target.closest('.card-content')
-        let clickedCardId = clickedCard.getAttribute("id")
-        console.log("clickedCardId", clickedCardId)
+    const handleClickOnCard = async () => {
+        // let clickedCard = e.target.closest('.card-content')
+        // let clickedCardId = clickedCard.getAttribute("id")
         selectPokemon(pokemonID+1)
-        enableModal()
     }
     //-- stillLoading ? '' : 
     return (
@@ -35,7 +33,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     selectPokemon: id => dispatch(selectPokemon(id)),
-    enableModal: () => dispatch(enableModal())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

@@ -2,7 +2,7 @@ import { PokemonActionTypes } from '../pokemon/pokemon.types'
 
 const INITIAL_STATE = {
     selected: {type: []},
-    loading: true,
+    loading: false,
     error: null
 }
 
@@ -12,6 +12,11 @@ const pokemonReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 selected: action.payload
+            }
+        case PokemonActionTypes.START_LOADING:
+            return {
+                ...state,
+                loading: true
             }
         case PokemonActionTypes.FETCH_POKEMON_DATA_SUCCESS:
             return {

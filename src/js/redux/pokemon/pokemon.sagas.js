@@ -1,10 +1,12 @@
 import { takeLatest, put, all, call, } from "redux-saga/effects";
 import { PokemonActionTypes } from "./pokemon.types";
 import { names, typeList } from '../../data/pokemon.data'
+import { enableModal } from '../modal/modal.actions'
 import {
     fetchPokemonDataSuccess,
     fetchPokemonDataFailure,
     addPokemonToSelected,
+    startLoading
 } from "./pokemon.actions";
 
 
@@ -24,6 +26,7 @@ export function* selectPokemonAsync({payload}) {
     // -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
 
     try {
+            yield put(startLoading())
             let pokeDataAPI = fetch(`https://pokeapi.co/api/v2/pokemon/${payload}`)
             let descriptionAPI = fetch(`https://pokeapi.co/api/v2/pokemon-species/${payload}/`)
             
@@ -56,6 +59,7 @@ export function* selectPokemonAsync({payload}) {
 
             yield put(addPokemonToSelected(pokemonObject))
             yield put(fetchPokemonDataSuccess())
+            yield put(enableModal())
 
     } catch(error) {
         yield put(fetchPokemonDataFailure(error))
