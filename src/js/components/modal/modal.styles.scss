@@ -12,7 +12,8 @@
     opacity: 1;
     visibility: hidden;
     z-index: 2;
-    transition-duration: 1.4s;
+    transition-duration: 1.2s;
+    transition-timing-function: ease-out;
 
     @media (max-width: 800px) {
         transition-duration: 0.9s;
@@ -26,7 +27,8 @@
         top: 10%;
         max-width: 1000px;
         width: 0px;
-        transition-duration: 1.5s;
+        transition-duration: 1.2s;
+        transition-timing-function: ease-out;
         transition-property: width, visibility;
         visibility: hidden;
         position: fixed;
