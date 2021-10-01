@@ -16,8 +16,6 @@ const CardView = ({selected, disableModal}) => {
     let pokemon = selected
     let evolveTree = (findEvolutionTree(pokemon.id) ? findEvolutionTree(pokemon.id): [])
 
-    console.log("evolveTree", evolveTree)
-
     return (
         <div className="cardview">
             <div className="name-container">
