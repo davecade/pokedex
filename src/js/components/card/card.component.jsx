@@ -10,11 +10,8 @@ const Card = ({ pokemonID, evolveInfo, backgroundColor, borderColor, enableModal
 
 
     const handleClickOnCard = async () => {
-        // let clickedCard = e.target.closest('.card-content')
-        // let clickedCardId = clickedCard.getAttribute("id")
         selectPokemon(pokemonID+1)
     }
-    //-- stillLoading ? '' : 
     return (
         <div
             className={`card-content ${evolveInfo ? 'evolveInfo' : 'mainPage'}`}

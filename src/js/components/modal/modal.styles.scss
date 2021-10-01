@@ -8,12 +8,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     opacity: 1;
     visibility: hidden;
     z-index: 2;
     transition-duration: 1.2s;
     transition-timing-function: ease-out;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+      }
+      
+      /* Hide scrollbar for IE, Edge and Firefox */
+    & {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
 
     @media (max-width: 800px) {
         transition-duration: 0.9s;
@@ -31,14 +42,14 @@
         transition-timing-function: ease-out;
         transition-property: width, visibility;
         visibility: hidden;
-        position: fixed;
+        position: relative;
         
 
-        // -- Mobile portraite
+        // -- Mobile portrait
         @media (max-width: 800px) {
             display: flex;
             top: 0;
-            height: 100vh;
+           //height: 100vh;
             border-radius: 0;
             transition-duration: 1s;
         }
@@ -46,16 +57,15 @@
         @media (max-width: 500px) {
             display: flex;
             top: 0;
-            height: 100vh;
+            //height: 100vh;
             border-radius: 0;
             transition-duration: .7s;
         }
 
         // -- Mobile landscape
-        @media (max-height: 500px) {
-            top: 0;
-            
-        }
+        // @media (max-height: 500px) {
+        //     top: 0;
+        //}
 
         h4 {
             padding: 1rem;

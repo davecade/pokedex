@@ -3,7 +3,7 @@
 .cardview {
     position: relative;
     background: linear-gradient(to bottom right, #8c8cca, #ebefff);
-    height: 100%;
+    height: fit-content;
     width: 100%;
     overflow: hidden;
     border-radius: 20px;
@@ -14,9 +14,9 @@
     }
 
     //-- Mobile landscape
-    @media (max-height: 500px) {
-        border-radius: 0;
-    }
+    // @media (max-height: 500px) {
+    //     border-radius: 0;
+    // }
 
     .red {
         content: '';
@@ -59,9 +59,9 @@
         }
 
         //-- Mobile landscape
-        @media (max-height: 500px) {
-            margin-top: 0;
-        }
+        // @media (max-height: 500px) {
+        //     margin-top: 0;
+        // }
 
         .cardview-name {
             text-transform: uppercase;
@@ -88,9 +88,9 @@
             }
 
             //-- Mobile landscape
-            @media (max-height: 500px) {
+            // @media (max-height: 500px) {
 
-            }
+            // }
         }
     }
 
@@ -111,11 +111,11 @@
         }
 
         //-- Mobile landscape
-        @media (max-height: 500px) {
-            justify-content: space-between;
-            align-items: flex-start;
-            width: 0;
-        }
+        // @media (max-height: 500px) {
+        //     justify-content: space-between;
+        //     align-items: flex-start;
+        //     width: 0;
+        // }
 
 
         .close-modal {
@@ -154,10 +154,10 @@
             }
 
             //-- Mobile landscape
-            @media (max-height: 500px) {
-                width: 200px;
-                height: 200px;
-            }
+            // @media (max-height: 500px) {
+            //     width: 200px;
+            //     height: 200px;
+            // }
 
 
         }
@@ -193,11 +193,11 @@
                 }
 
                 //-- Mobile landscape
-                @media (max-height: 500px) {
-                    border-radius: 15px 40px 15px 40px;
-                    width: 350px;
-                    font-size: .6rem;
-                }
+                // @media (max-height: 500px) {
+                //     border-radius: 15px 40px 15px 40px;
+                //     width: 350px;
+                //     font-size: .6rem;
+                // }
 
 
                 .stat-title {
@@ -226,9 +226,9 @@
                         }
 
                         //-- Mobile landscape
-                        @media (max-height: 500px) {
-                            height: 20px;
-                        }
+                        // @media (max-height: 500px) {
+                        //     height: 20px;
+                        // }
     
                         &:last-child {
                             margin-bottom: 0;
