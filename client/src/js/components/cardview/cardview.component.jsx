@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './cardview.styles.scss'
-import { evolutionData } from '../../data/pokemon.data';
 import Card from '../card/card.component'
 import { connect } from 'react-redux';
 import { disableModal } from '../../redux/modal/modal.actions'
+import axios from 'axios';
 
-const findEvolutionTree = (pokemonId) => {
-    for (let tree of evolutionData) {
-        if(tree.includes(pokemonId)) return tree;
-    }
-}
 
 const CardView = ({selected, disableModal}) => {
+    const pokemon = selected
+    const [ evolveTree, setEvolveTree ] = useState([])
 
-    let pokemon = selected
-    let evolveTree = (findEvolutionTree(pokemon.id) ? findEvolutionTree(pokemon.id): [])
+    useEffect(() => {
+        return (async () => {
+            const evolveTreeData = await axios.get(`/evolveTree/${pokemon.id}`)
+            let foundTree = evolveTreeData.data
+            setEvolveTree(foundTree)
+        })()
+    }, [selected, pokemon.id])
 
     return (
         <div className="cardview">
@@ -22,8 +24,6 @@ const CardView = ({selected, disableModal}) => {
                 <h1 className="cardview-name">{pokemon.name}</h1>
             </div>
 
-
-            
             <div className="cardview-content">
                 <div className="close-modal">
                     <i className="fas fa-chevron-circle-left" onClick={disableModal}></i>
@@ -59,7 +59,7 @@ const CardView = ({selected, disableModal}) => {
                     
                         <div className="evolution-tree">
                             {
-                                evolveTree.map(id => {
+                                (evolveTree ? evolveTree : []).map(id => {
                                     let borderColor;
                                     let backgroundColor
 
@@ -71,7 +71,7 @@ const CardView = ({selected, disableModal}) => {
                                         backgroundColor = "black"
                                     }
 
-                                    return <Card key={id} pokemonID={id-1} backgroundColor={backgroundColor} borderColor={borderColor} evolveInfo={true}/>
+                                    return <Card key={id} pokemon={pokemon} pokemonID={id-1} backgroundColor={backgroundColor} borderColor={borderColor} evolveInfo={true}/>
                                 })
                             }
                         </div>
@@ -90,7 +90,7 @@ const CardView = ({selected, disableModal}) => {
 }
 
 const mapStateToProps = state => ({
-    selected: state.pokemon.selected
+    selected: state.pokemon.selected,
 })
 
 const mapDispatchToProps = dispatch => ({

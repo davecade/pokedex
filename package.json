@@ -1,0 +1,35 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "When I was a kid, I was a big fan of Pokemon. So creating this simple app was like making one of my childhood dreams a reality. This was made using ReactJS, and an external 3rd party Pokemon API. It's a simple app displaying information about 151 different Pokemon. React Libraries included are: Redux for state management and Redux Sagas to manage API calls. Enjoy.",
+  "main": "server.js",
+  "scripts": {
+    "install-server-dep": "npm install",
+    "install-client-dep": "cd client && npm install",
+    "server": "nodemon server.js",
+    "build": "cd client && npm run build",
+    "client": "cd client && npm start",
+    "start": "node server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davecade/pokedex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davecade/pokedex/issues"
+  },
+  "homepage": "https://github.com/davecade/pokedex#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "concurrently": "^6.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15"
+  }
+}

@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './type-selector.styles.scss'
 import { connect } from 'react-redux'
 import { updateTypeSelection } from '../../redux/search/search.actions'
-import {types} from '../../data/pokemon.data'
+import axios from 'axios'
+
 
 const TypeSelector = ({type, updateTypeSelection}) => {
+
+    const [ types, setTypes ] = useState([])
+
+    useEffect(() => {
+        return (async () => {
+            const typesData = await axios.get('/types')
+            setTypes(typesData.data)
+        })()
+    }, [])
 
     const handleChange = (e) => {
         updateTypeSelection(e.target.value)

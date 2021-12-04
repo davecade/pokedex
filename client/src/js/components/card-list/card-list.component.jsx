@@ -1,13 +1,24 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Card from '../card/card.component'
 import './card-list.styles.scss'
 import { connect } from 'react-redux'
-import { names, typeList } from '../../data/pokemon.data'
+import axios from 'axios';
 
 
 
 const CardList = ({ searchField, selectedType}) => {
     let filteredPokemon = []
+    const [ names, setNames ] = useState([])
+    const [ typeList, setTypeList ] = useState([])
+
+    useEffect(() => {
+        return  (async () => {
+            const namesData = await axios.get('/names')
+            const typeListData = await axios.get('/typeList')
+            setNames(namesData.data)
+            setTypeList(typeListData.data)
+        })()
+    }, [])
 
     //-- adding pokemon as object
     names.forEach((pokemon, index) => {
@@ -30,7 +41,7 @@ const CardList = ({ searchField, selectedType}) => {
                 <div className="card-list-container">
                     {
                         filteredPokemon.map((pokemon, index) => {
-                            return <Card key={index} pokemonID={pokemon.id} evolveInfo={false}/>
+                            return <Card key={index} pokemon={pokemon} pokemonID={pokemon.id} evolveInfo={false}/>
                         })
                     }
                 </div>

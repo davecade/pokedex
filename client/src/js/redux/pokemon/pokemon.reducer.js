@@ -2,6 +2,7 @@ import { PokemonActionTypes } from '../pokemon/pokemon.types'
 
 const INITIAL_STATE = {
     selected: {type: []},
+    evolveTree: [],
     loading: false,
     error: null
 }
