@@ -59,11 +59,11 @@ const CardView = ({selected, disableModal}) => {
                     
                         <div className="evolution-tree">
                             {
-                                evolveTree.map(id => {
+                                (evolveTree ? evolveTree : [] ).map(id => {
                                     let borderColor;
                                     let backgroundColor
 
-                                    if(pokemon.id === (id)) {
+                                    if(Number(pokemon.id) === (id)) {
                                         borderColor = "gold"
                                         backgroundColor = "black"
                                     } else {
