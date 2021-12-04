@@ -13,11 +13,6 @@
         border-radius: 0;
     }
 
-    //-- Mobile landscape
-    // @media (max-height: 500px) {
-    //     border-radius: 0;
-    // }
-
     .red {
         content: '';
         position: absolute;
@@ -58,11 +53,6 @@
             
         }
 
-        //-- Mobile landscape
-        // @media (max-height: 500px) {
-        //     margin-top: 0;
-        // }
-
         .cardview-name {
             text-transform: uppercase;
             z-index: 1;
@@ -86,11 +76,6 @@
                 line-height: 35px;
                 font-size: 1rem;
             }
-
-            //-- Mobile landscape
-            // @media (max-height: 500px) {
-
-            // }
         }
     }
 
@@ -109,13 +94,6 @@
             flex-direction: column-reverse;
             justify-content: flex-end;
         }
-
-        //-- Mobile landscape
-        // @media (max-height: 500px) {
-        //     justify-content: space-between;
-        //     align-items: flex-start;
-        //     width: 0;
-        // }
 
 
         .close-modal {
@@ -153,13 +131,6 @@
                 margin-bottom: .5rem;
             }
 
-            //-- Mobile landscape
-            // @media (max-height: 500px) {
-            //     width: 200px;
-            //     height: 200px;
-            // }
-
-
         }
 
         .left {
@@ -192,13 +163,6 @@
                     font-size: .6rem;
                 }
 
-                //-- Mobile landscape
-                // @media (max-height: 500px) {
-                //     border-radius: 15px 40px 15px 40px;
-                //     width: 350px;
-                //     font-size: .6rem;
-                // }
-
 
                 .stat-title {
                     flex: 1;
@@ -224,11 +188,6 @@
                         @media (max-width: 500px) {
                             height: 20px;
                         }
-
-                        //-- Mobile landscape
-                        // @media (max-height: 500px) {
-                        //     height: 20px;
-                        // }
     
                         &:last-child {
                             margin-bottom: 0;
@@ -256,11 +215,6 @@
                         }
 
                         @media (max-width: 500px) {
-                            height: 20px;
-                        }
-
-                        //-- Mobile landscape
-                        @media (max-height: 500px) {
                             height: 20px;
                         }
     
@@ -292,12 +246,6 @@
                 @media (max-width: 500px) {
                     width: 350px;
 
-                }
-                
-                //-- Mobile landscape
-                @media (max-height: 500px) {
-                    width: 350px;
-                    border-radius: 15px 40px 15px 40px;
                 }
 
                 h4 {

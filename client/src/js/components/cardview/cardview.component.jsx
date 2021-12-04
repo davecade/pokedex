@@ -59,7 +59,7 @@ const CardView = ({selected, disableModal}) => {
                     
                         <div className="evolution-tree">
                             {
-                                (evolveTree ? evolveTree : []).map(id => {
+                                evolveTree.map(id => {
                                     let borderColor;
                                     let backgroundColor
 
