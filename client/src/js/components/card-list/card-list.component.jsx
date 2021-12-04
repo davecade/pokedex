@@ -41,7 +41,7 @@ const CardList = ({ searchField, selectedType}) => {
                 <div className="card-list-container">
                     {
                         filteredPokemon.map((pokemon, index) => {
-                            return <Card key={index} pokemon={pokemon} pokemonID={pokemon.id} evolveInfo={false}/>
+                            return <Card key={index} pokemonName={pokemon.name} pokemonID={pokemon.id} evolveInfo={false}/>
                         })
                     }
                 </div>

@@ -4,8 +4,7 @@ import { connect } from 'react-redux'
 import { selectPokemon } from '../../redux/pokemon/pokemon.actions'
 
 
-
-const Card = ({ pokemon, pokemonID, evolveInfo, backgroundColor, borderColor, selectPokemon}) => {
+const Card = ({ pokemonName, pokemonID, evolveInfo, backgroundColor, borderColor, selectPokemon}) => {
 
     const handleClickOnCard = async () => {
         selectPokemon(pokemonID+1)
@@ -17,18 +16,14 @@ const Card = ({ pokemon, pokemonID, evolveInfo, backgroundColor, borderColor, se
             id={pokemonID} onClick={handleClickOnCard}
             style={{borderColor: `${borderColor}`, background: `${backgroundColor}`}}>
 
-            {evolveInfo ? '' : <h2>{pokemon.name}</h2>}
+            {evolveInfo ? '' : <h2>{pokemonName}</h2>}
             <img src={`./images/pokemon_${pokemonID+1}.jpg`} alt=""/>
         </div>
     )
 }
 
-const mapStateToProps = state => ({
-    stillLoading: state.pokemon.loading
-})
-
 const mapDispatchToProps = dispatch => ({
     selectPokemon: id => dispatch(selectPokemon(id)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default connect(null, mapDispatchToProps)(Card);
