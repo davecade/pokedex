@@ -33,10 +33,9 @@ const findEvolutionTree = (pokemonId) => {
     }
 };
 
-// -- Pokemon Image API: https://pokeres.bastionbot.org/images/pokemon/1.png
-// -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
-
-app.get("/pokemon/:id", async (req, res) => {
+const getPokemon = async (req, res) => {
+    // -- Pokemon Image API: https://pokeres.bastionbot.org/images/pokemon/1.png
+    // -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
     const pokeDataAPI = axios.get(
         `https://pokeapi.co/api/v2/pokemon/${req.params.id}`
     );
@@ -75,7 +74,10 @@ app.get("/pokemon/:id", async (req, res) => {
     };
 
     res.status(200).send(pokemonObject);
-});
+};
+
+//-- Routes
+app.get("/pokemon/:id", getPokemon);
 
 app.get("/names", (req, res) => {
     res.send(names);
