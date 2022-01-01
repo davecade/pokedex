@@ -101,6 +101,7 @@ app.get("/typeList", getTypeList);
 app.get("/types", getTypes);
 app.get("/evolveTree/:id", getEvolutionTree);
 
+//-- Production Route --//
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "client/build")));
 
