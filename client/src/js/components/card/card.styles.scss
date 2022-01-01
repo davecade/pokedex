@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
 
 .card-content.mainPage {
     cursor: pointer;
-    transition: .3s ease;
+    transition: 0.3s ease;
     background: #0a247a;
     border: 2px solid #ffcb05;
     border-radius: 10px;
@@ -11,22 +11,22 @@
 
     h2 {
         text-transform: uppercase;
-        font-family: 'Orbitron';
+        font-family: "Orbitron";
         letter-spacing: 2px;
         color: #ffcb05;
         margin-bottom: 1rem;
 
         @media (max-width: 1000px) {
-            font-size: .8rem;
+            font-size: 0.8rem;
         }
 
         @media (max-width: 800px) {
-            font-size: .6rem;
+            font-size: 0.6rem;
         }
 
         // -- Mobile landscape
         @media (max-height: 500px) {
-            font-size: .6rem;
+            font-size: 0.6rem;
         }
     }
 
@@ -63,7 +63,7 @@
 
 .card-content.evolveInfo {
     cursor: pointer;
-    transition: .3s ease;
+    transition: 0.3s ease;
     background: black;
     border-radius: 50%;
     margin: 1rem;

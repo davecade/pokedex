@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
 
 .navbar {
     position: fixed;
@@ -7,12 +7,12 @@
     z-index: 1;
     background: #1a1d22;
     border-bottom: 2px solid black;
-    padding: .5rem 0;
-    font-family: 'Orbitron';
+    padding: 0.5rem 0;
+    font-family: "Orbitron";
     height: 120px;
 
     @media (max-width: 1000px) {
-        font-size: .6rem;
+        font-size: 0.6rem;
     }
 
     .params {
@@ -20,6 +20,4 @@
         justify-content: center;
         align-items: center;
     }
-
-
 }
