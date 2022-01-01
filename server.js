@@ -33,6 +33,7 @@ const findEvolutionTree = (pokemonId) => {
     }
 };
 
+//-- Route Handlers --//
 const getPokemon = async (req, res) => {
     // -- Pokemon Image API: https://pokeres.bastionbot.org/images/pokemon/1.png
     // -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
@@ -76,25 +77,29 @@ const getPokemon = async (req, res) => {
     res.status(200).send(pokemonObject);
 };
 
-//-- Routes
-app.get("/pokemon/:id", getPokemon);
-
-app.get("/names", (req, res) => {
+const getNames = (req, res) => {
     res.send(names);
-});
+};
 
-app.get("/typeList", (req, res) => {
+const getTypeList = (req, res) => {
     res.status(200).send(typeList);
-});
+};
 
-app.get("/types", (req, res) => {
+const getTypes = (req, res) => {
     res.status(200).send(types);
-});
+};
 
-app.get("/evolveTree/:id", (req, res) => {
+const getEvolutionTree = (req, res) => {
     const tree = findEvolutionTree(req.params.id);
     res.status(200).send(tree);
-});
+};
+
+//-- Routes --//
+app.get("/pokemon/:id", getPokemon);
+app.get("/names", getNames);
+app.get("/typeList", getTypeList);
+app.get("/types", getTypes);
+app.get("/evolveTree/:id", getEvolutionTree);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "client/build")));
@@ -104,7 +109,7 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-//-- Runs server
+//-- Runs server --//
 app.listen(port, (error) => {
     if (error) throw error;
     console.log(`Server runnning on port ${port}`);
