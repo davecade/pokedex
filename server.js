@@ -18,6 +18,8 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
+const pokemonDbLoaded = [];
+
 const removeUnwantedArrowText = (text) => {
     for (let i = 0; i < text.length; i++) {
         if (text[i] === "") {
@@ -33,48 +35,77 @@ const findEvolutionTree = (pokemonId) => {
     }
 };
 
+const createPokemonObject = async (id) => {
+    try {
+        // -- Pokemon Image API: https://pokeres.bastionbot.org/images/pokemon/1.png
+        // -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
+
+        const pokeDataAPI = axios.get(
+            `https://pokeapi.co/api/v2/pokemon/${id}`
+        );
+        const descriptionAPI = axios.get(
+            `https://pokeapi.co/api/v2/pokemon-species/${id}`
+        );
+
+        //-- Once data is received, convert to json
+        const pokeData = await Promise.all([pokeDataAPI, descriptionAPI]);
+        const pokeDataStats = pokeData[0].data;
+        const pokeDataDescription = pokeData[1].data;
+
+        // -- Get description parts and remove unwanted arrow text
+        // -- Then combine description parts into one
+        const desciptionPart1 = removeUnwantedArrowText(
+            pokeDataDescription.flavor_text_entries[10].flavor_text.split("")
+        ).join("");
+        const desciptionPart2 = removeUnwantedArrowText(
+            pokeDataDescription.flavor_text_entries[11].flavor_text.split("")
+        ).join("");
+        const description = `${desciptionPart1} ${desciptionPart2}`;
+
+        // -- Create pokemon object
+        const pokemonObject = {
+            id: id,
+            image: `./images/pokemon_${id}.jpg`,
+            name: names[id - 1],
+            type: typeList[id - 1],
+            description: description,
+            hp: pokeDataStats.stats[0].base_stat,
+            height: pokeDataStats.height,
+            weight: pokeDataStats.weight,
+            attack: pokeDataStats.stats[1].base_stat,
+            defense: pokeDataStats.stats[2].base_stat,
+            speed: pokeDataStats.stats[5].base_stat,
+        };
+
+        return pokemonObject;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+(async () => {
+    try {
+        for (let i = 1; i < 152; i++) {
+            const pokemon = await createPokemonObject(i);
+            pokemonDbLoaded.push(pokemon);
+        }
+    } catch (e) {
+        console.log(e);
+    }
+})();
+
 //-- Route Handlers --//
 const getPokemon = async (req, res) => {
-    // -- Pokemon Image API: https://pokeres.bastionbot.org/images/pokemon/1.png
-    // -- Pokemon Data API: https://pokeapi.co/api/v2/pokemon/1
-    const pokeDataAPI = axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${req.params.id}`
-    );
-    const descriptionAPI = axios.get(
-        `https://pokeapi.co/api/v2/pokemon-species/${req.params.id}`
-    );
-
-    //-- Once data is received, convert to json
-    const pokeData = await Promise.all([pokeDataAPI, descriptionAPI]);
-    const pokeDataStats = pokeData[0].data;
-    const pokeDataDescription = pokeData[1].data;
-
-    // -- Get description parts and remove unwanted arrow text
-    // -- Then combine description parts into one
-    const desciptionPart1 = removeUnwantedArrowText(
-        pokeDataDescription.flavor_text_entries[10].flavor_text.split("")
-    ).join("");
-    const desciptionPart2 = removeUnwantedArrowText(
-        pokeDataDescription.flavor_text_entries[11].flavor_text.split("")
-    ).join("");
-    const description = `${desciptionPart1} ${desciptionPart2}`;
-
-    // -- Create pokemon object
-    const pokemonObject = {
-        id: req.params.id,
-        image: `./images/pokemon_${req.params.id}.jpg`,
-        name: names[req.params.id - 1],
-        type: typeList[req.params.id - 1],
-        description: description,
-        hp: pokeDataStats.stats[0].base_stat,
-        height: pokeDataStats.height,
-        weight: pokeDataStats.weight,
-        attack: pokeDataStats.stats[1].base_stat,
-        defense: pokeDataStats.stats[2].base_stat,
-        speed: pokeDataStats.stats[5].base_stat,
-    };
-
-    res.status(200).send(pokemonObject);
+    if (req.params.id < pokemonDbLoaded.length) {
+        res.status(200).send(pokemonDbLoaded[req.params.id - 1]);
+    } else {
+        try {
+            const pokemon = await createPokemonObject(req.params.id);
+            res.status(200).send(pokemon);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 };
 
 const getNames = (req, res) => {
